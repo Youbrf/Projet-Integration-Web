@@ -1,15 +1,16 @@
-package be.bxl.icc.reservation.reservation;
+package be.bxl.icc.reservation;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 
 @RestController
 public class HelloController {
 
     @RequestMapping("/")
     public String index() {
-        return "Greetings from Spring Boot!";
+        return "Greetings from Spring Boot je suis ici !";
     }
-
+    
 }
 
