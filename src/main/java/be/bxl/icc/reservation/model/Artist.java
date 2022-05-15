@@ -1,9 +1,13 @@
 package be.bxl.icc.reservation.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 
@@ -16,6 +20,9 @@ public class Artist {
 	private String firstname;
 	private String lastname;
 	
+	@ManyToMany(mappedBy = "artists")
+	private List<Type> types = new ArrayList<>();
+
 	protected Artist() {}
 
 	public Artist(String firstname, String lastname) {
@@ -41,6 +48,28 @@ public class Artist {
 
 	public void setLastname(String lastname) {
 		this.lastname = lastname;
+	}
+
+	public List<Type> getTypes() {
+		return types;
+	}
+
+	public Artist addType(Type type) {
+		if(!this.types.contains(type)) {
+			this.types.add(type);
+			type.addArtist(this);
+		}
+		
+		return this;
+	}
+	
+	public Artist removeType(Type type) {
+		if(this.types.contains(type)) {
+			this.types.remove(type);
+			type.getArtists().remove(this);
+		}
+		
+		return this;
 	}
 
 	@Override
