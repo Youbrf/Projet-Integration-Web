@@ -1,5 +1,8 @@
 package be.bxl.icc.reservation.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.github.slugify.Slugify;
@@ -30,6 +34,34 @@ public class Location {
 	
 	private String website;
 	private String phone;
+	
+	@OneToMany(targetEntity=Show.class, mappedBy="location")
+	private List<Show> shows = new ArrayList<>();
+
+	public List<Show> getShows() {
+		return shows;
+	}
+
+	public Location addShow(Show show) {
+		if(!this.shows.contains(show)) {
+			this.shows.add(show);
+			show.setLocation(this);
+		}
+		
+		return this;
+	}
+	
+	public Location removeShow(Show show) {
+		if(this.shows.contains(show)) {
+			this.shows.remove(show);
+			if(show.getLocation().equals(this)) {
+				show.setLocation(null);
+			}
+		}
+		
+		return this;
+	}
+
 	
 	protected Location() { }
 
@@ -106,6 +138,7 @@ public class Location {
 	public String toString() {
 		return "Location [id=" + id + ", slug=" + slug + ", designation=" + designation 
 			+ ", address=" + address	+ ", locality=" + locality + ", website=" 
-			+ website + ", phone=" + phone + "]";
+			+ website + ", phone=" + phone + ", shows=" + shows.size() + "]";
 	}
+
 }
