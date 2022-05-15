@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -38,6 +39,35 @@ public class Show {
 	@ManyToOne
 	@JoinColumn(name="location_id", nullable=true)
 	private Location location;
+	
+	@ManyToMany(mappedBy = "shows")
+	private List<ArtistType> artistTypes = new ArrayList<>();
+
+	/**
+     * Get the performances (artists in a type of collaboration) for the show
+     */
+	public List<ArtistType> getArtistTypes() {
+		return artistTypes;
+	}
+
+	public Show addArtistType(ArtistType artistType) {
+		if(!this.artistTypes.contains(artistType)) {
+			this.artistTypes.add(artistType);
+			artistType.addShow(this);
+		}
+		
+		return this;
+	}
+	
+	public Show removeArtistType(ArtistType artistType) {
+		if(this.artistTypes.contains(artistType)) {
+			this.artistTypes.remove(artistType);
+			artistType.getShows().remove(this);
+		}
+		
+		return this;
+	}
+
 	
 	private boolean bookable;
 	private double price;
