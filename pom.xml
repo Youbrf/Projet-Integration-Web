@@ -57,6 +57,12 @@
 	 			<groupId>nz.net.ultraq.thymeleaf</groupId>
 	  			<artifactId>thymeleaf-layout-dialect</artifactId>
 		</dependency>
+		<dependency>
+				<groupId>com.github.slugify</groupId>
+				<artifactId>slugify</artifactId>
+				<version>2.4</version>
+		</dependency>
+		
 	</dependencies>
 
 	<build>
