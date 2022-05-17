@@ -33,8 +33,8 @@ public class ArtistService {
 		artistRepository.save(artist);
 	}
 
-	public void deleteArtist(String id) {
-		Long indice = (long) Integer.parseInt(id);
+	public void deleteArtist(Long indice2) {
+		Long indice = indice2;
 		
 		artistRepository.deleteById(indice);
 	}
