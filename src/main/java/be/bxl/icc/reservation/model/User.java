@@ -30,6 +30,9 @@ private String email;
 	@ManyToMany(mappedBy = "users")
 	private List<Role> roles = new ArrayList<>();
 
+	@ManyToMany(mappedBy = "users")
+	private List<Representation> representations = new ArrayList<>();
+
 	protected User() {}
 
 	public User(String login, String firstname, String lastname) {
@@ -94,6 +97,28 @@ private String email;
 	public List<Role> getRoles() {
 		return roles;
 	}
+	public List<Representation> getRepresentations() {
+		return representations;
+	}
+
+	public User addRepresentation(Representation representation) {
+		if(!this.representations.contains(representation)) {
+			this.representations.add(representation);
+			representation.addUser(this);
+		}
+		
+		return this;
+	}
+	
+	public User removeRepresentation(Representation representation) {
+		if(this.representations.contains(representation)) {
+			this.representations.remove(representation);
+			representation.getUsers().remove(this);
+		}
+		
+		return this;
+	}
+
 
 	public LocalDateTime getCreated_at() {
 		return created_at;
