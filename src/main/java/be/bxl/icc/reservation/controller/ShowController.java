@@ -1,7 +1,6 @@
 package be.bxl.icc.reservation.controller;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -16,7 +15,7 @@ import be.bxl.icc.reservation.model.ArtistType;
 import be.bxl.icc.reservation.model.Show;
 import be.bxl.icc.reservation.model.ShowService;
 import be.bxl.icc.reservation.model.Type;
-import javassist.expr.Instanceof;
+
 
 
 @Controller
@@ -37,24 +36,23 @@ public class ShowController {
 	@GetMapping("/shows/{id}")
    	 public String show(Model model, @PathVariable("id") String id) {
 		Show show = service.get(id);
+		
 
-		//Récupérer les artistes du spectacle et les grouper par type
+        //Récupérer les artistes du spectacle et les grouper par type
         Map<Type,ArrayList<ArtistType>> collaborateurs = new TreeMap<>();
         
-//        show.getArtistTypes().forEach((a)->{
-//        	if(a.getType() == null) {
-//            	collaborateurs.put(a.getType(), new ArrayList<>());
-//            }
-//            collaborateurs.get(a.getType()).add(a);
-//        });
-//       
+        for(ArtistType at : show.getArtistTypes()) {
+            if(collaborateurs.get(at.getType()) == null) {
+            	collaborateurs.put(at.getType(), new ArrayList<>());
+            }
+            
+            collaborateurs.get(at.getType()).add(at);
+        }
         
         model.addAttribute("collaborateurs", collaborateurs);
-
-		model.addAttribute("show", show);
-		model.addAttribute("title", "Fiche d'un spectacle");
+        model.addAttribute("show", show);
+	model.addAttribute("title", "Fiche d'un spectacle");
 		
-        	return "show/show";
-    	}
-
+        return "show/show";
+    }
 }
