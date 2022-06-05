@@ -20,6 +20,14 @@ public class Locality {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
 
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public void setLocations(List<Location> locations) {
+		this.locations = locations;
+	}
+
 	@NotEmpty(message = "The postalCode must not be empty.")
 	@Size(min=2, max=6, message = "The postalCode must be between 2 and 6 characters long.")
 	String postalCode;

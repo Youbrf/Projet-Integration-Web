@@ -13,6 +13,11 @@
 	       	<li th:each="location : ${locality.locations}" 
     			 th:text="${location.designation}">Dexia Art center</li>
    	        </ul>
+   	        <br>
+   	        <div class="actions">
+		<a th:href="@{/localities/{id}/edit(id=${locality.id})}">Edit</a>
+	        </div>
+   	        
 
    	        <p th:if="${#lists.isEmpty(locality.locations)}">Aucun lieu de spectacle.</p>
         

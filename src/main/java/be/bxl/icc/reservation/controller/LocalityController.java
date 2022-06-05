@@ -2,7 +2,7 @@ package be.bxl.icc.reservation.controller;
 
 
 import java.util.List;
-
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+//import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+
 
 import be.bxl.icc.reservation.model.Locality;
 import be.bxl.icc.reservation.model.LocalityService;
@@ -62,6 +65,49 @@ public class LocalityController {
 	    
 	    return "redirect:/localities/"+locality.getId();
 	}
+	@GetMapping("/localities/{id}/edit")
+	public String edit(Model model, @PathVariable("id") String id, HttpServletRequest request) {
+		Locality locality = service.get(id);
+
+		model.addAttribute("locality", locality);
+
+
+		//Générer le lien retour pour l'annulation
+	String referrer = request.getHeader("Referer");
+
+		if(referrer!=null && !referrer.equals("")) {
+			model.addAttribute("back", referrer);
+		} else {
+			model.addAttribute("back", "/localities/"+locality.getId());
+		}
+		
+		return "locality/edit";
+	}
+	
+	@PutMapping("/localities/{id}/edit")
+	public String update(@Valid @ModelAttribute("locality") Locality locality, BindingResult bindingResult, @PathVariable("id") String id, Model model) {
+	    
+		if (bindingResult.hasErrors()) {
+			return "locality/edit";
+		}
+		
+		Locality existing = service.get(id);
+		
+		if(existing==null) {
+			return "locality/index";
+		}
+		
+		Long indice = (long) Integer.parseInt(id);
+		
+		locality.setId(indice);
+	    	service.update(id, locality);
+	    
+		model.addAttribute("locality", locality);
+	    
+		return "redirect:/localities/"+locality.getId();
+	}
+
+
 
 }
 
