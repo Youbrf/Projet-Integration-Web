@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 
 @Entity
@@ -17,7 +19,15 @@ public class Locality {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
-	private String postalCode;
+
+	@NotEmpty(message = "The postalCode must not be empty.")
+	@Size(min=2, max=6, message = "The postalCode must be between 2 and 6 characters long.")
+	String postalCode;
+	
+	
+	@NotEmpty(message = "The locality must not be empty.")
+	@Size(min=2, max=60, message = "The locality must be between 2 and 60 characters long.")
+
 	private String locality;
 	
 	@OneToMany( targetEntity=Location.class, mappedBy="locality" )
