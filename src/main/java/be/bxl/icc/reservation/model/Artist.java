@@ -30,6 +30,14 @@ public class Artist {
 
 	private String lastname;
 	
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public void setTypes(List<Type> types) {
+		this.types = types;
+	}
+
 	@ManyToMany(mappedBy = "artists")
 	private List<Type> types = new ArrayList<>();
 
