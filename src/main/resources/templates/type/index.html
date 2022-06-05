@@ -10,10 +10,13 @@
 	        <h1 th:text="${title}">Liste des types</h1>
 	
 	        <ul th:unless="${#lists.isEmpty(types)}">
+	        <th colspan="2">Actions</th>
                 	<li th:each="type : ${types}">
-			<span th:text="${type.type}">Acteur</span>
+			<span th:text="${type.type}">Type</span>
 		<a th:href="@{/types/{id}(id=${type.id})}">View</a>
+		<td><a th:href="@{/types/{id}/edit(id=${type.id})}">Edit</a></td>
 		</li>
+		<br>
 		<div class="actions">
 		<a th:href="@{/type/create}">Add new type</a>
 	        </div>

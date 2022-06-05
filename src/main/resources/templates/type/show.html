@@ -13,8 +13,11 @@
 	        	<li th:each="artist : ${type.artists}" 
 		th:text="|${artist.firstname} ${artist.lastname}|">Firstname Lastname</li>
    	        </ul>
-
-
+<br>
+        <div class="actions">
+		<a th:href="@{/types/{id}/edit(id=${type.id})}">Edit</a>
+	        </div>
+<br>
 	        <nav><a th:href="@{/types}">Retour à l'index</a></nav>
 	     </div>
 	</div>
