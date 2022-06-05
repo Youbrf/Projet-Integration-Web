@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 
 @Entity
@@ -19,6 +21,10 @@ public class Type {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
+	
+	@NotEmpty(message = "The type must not be empty.")
+	@Size(min=2, max=60, message = "The type must be between 2 and 60 characters long.")
+
 	private String type;
 	
 	@ManyToMany

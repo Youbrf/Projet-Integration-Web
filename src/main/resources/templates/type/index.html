@@ -14,6 +14,10 @@
 			<span th:text="${type.type}">Acteur</span>
 		<a th:href="@{/types/{id}(id=${type.id})}">View</a>
 		</li>
+		<div class="actions">
+		<a th:href="@{/type/create}">Add new type</a>
+	        </div>
+		
 	        </ul>
 	    </div>
 	</div>
