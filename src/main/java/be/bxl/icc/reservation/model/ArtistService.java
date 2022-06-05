@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ArtistService {
+	
 	@Autowired
 	private ArtistRepository artistRepository;
 		
@@ -33,10 +34,13 @@ public class ArtistService {
 		artistRepository.save(artist);
 	}
 
-	public void deleteArtist(String id) {
-		Long indice = (long) Integer.parseInt(id);
+	public void deleteArtist(long id) {
+		 long indice =id;
 		
 		artistRepository.deleteById(indice);
 	}
+
+	
+	
 }
 
