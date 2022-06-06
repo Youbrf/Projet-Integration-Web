@@ -7,13 +7,10 @@
 <body>
 	<div class="container">
 		<div layout:fragment="content">
-			<h1 th:text="${title}">Liste des localités</h1>
+			<h1 class="rounded border border-dark p-2 m-2 text-center text-black bg-light" th:text="${title}">Liste des localités</h1>
 			<br>
-			<div class="actions">
-				<a th:href="@{/localities/create}">Add new locality</a>
-			</div>
-
-
+			
+         <table class="table">
 			<ul th:unless="${#lists.isEmpty(localities)}">
 				<li th:each="locality : ${localities}"><span
 					th:text="|${locality.postalCode} ${locality.locality}|">1000
@@ -24,5 +21,9 @@
 			</ul>
 		</div>
 	</div>
+	<div class="actions">
+				<a th:href="@{/localities/create}">Add new locality</a>
+			</div>
+	
 </body>
 </html>

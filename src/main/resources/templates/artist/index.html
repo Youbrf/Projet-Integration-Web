@@ -7,21 +7,18 @@
 <body>
 	<div class="container">
 		<div layout:fragment="content">
-			<h1 th:text="${title}">Liste des artistes</h1>
-
-			<div class="actions">
-				<a th:href="@{/artists/create}">Add new artist</a>
-			</div>
+			<h1 class="rounded border border-dark p-2 m-2 text-center text-black bg-light" th:text="${title}">LISTE DES ARTISTES</h1>
 			<br>
 
 
-			<table class="table"th:unless="${#lists.isEmpty(artists)}">
-				<thead class="table-light">
+			<table class="table">
+			<th:unless="${#lists.isEmpty(artists)}">
+				<thead class="table-success">
 					<tr>
-						<th scope="col" Id></th>
+						<th scope="col" >Id</th>
 						<th scope="col">Firstname</th>
 						<th scope="col">Lastname</th>
-						<th colspan="3" style class="texte-center">Actions</th>
+						<th colspan="3" style class="text-center">Actions</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -46,6 +43,9 @@
 					</tr>
 				</tbody>
 			</table>
+			<div class="actions text-right">
+				<button class="btn btn-outline-primary text-white"><a th:href="@{/artists/create}">Add new artist</a></button>
+			</div>
 		</div>
 	</div>
 	<br>
