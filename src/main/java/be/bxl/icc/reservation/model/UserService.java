@@ -11,6 +11,7 @@ public class UserService {
 	@Autowired
 	private UserRepository repository;
 	
+	
 	public List<User> getAllUsers() {
 		List<User> users = new ArrayList<>();
 		
@@ -38,5 +39,9 @@ public class UserService {
 		
 		repository.deleteById(indice);
 	}
-}
+	
+	
+		
+	}
+
 

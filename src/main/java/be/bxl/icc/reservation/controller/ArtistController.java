@@ -120,6 +120,9 @@ public class ArtistController {
 	    
 		return "redirect:/artists/"+artist.getId();
 	}
+	
+	
+
 
 }
 

@@ -1,17 +1,17 @@
-<!-- <!DOCTYPE html> -->
-<!-- <html xmlns:layout="http://www.ultraq.net.mx/thymeleaf/layout" -->
-<!--  layout:decorate="~{layouts/main}"> -->
-<!-- <head> -->
-<!-- <title>Home</title> -->
-<!-- </head> -->
-<!-- <body> -->
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.mx/thymeleaf/layout"
+ layout:decorate="~{layouts/main}">
+<head>
+<title>Home</title>
+</head>
+<body>
 	
-<!-- </body> -->
-<!-- </html> -->
-<html xmlns:th="http://www.thymeleaf.org"  
+</body>
+</html>
+<!-- <html xmlns:th="http://www.thymeleaf.org"  
   xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">  
 <head>  
-    <!--/*/ <th:block th:include="fragments/head :: head"/> /*/-->  
+    /*/ <th:block th:include="fragments/head :: head"/> /*/  
 </head>  
 <body>  
 <div class="container-fluid">  
@@ -21,12 +21,12 @@
                 <img src="img/logo.png"/>  
             </div>  
   
-            <!--/* displayed if account IS NOT null, indicating that the user IS logged in */-->  
+            /* displayed if account IS NOT null, indicating that the user IS logged in */  
             <div th:if="${#authorization.expression('isAuthenticated()')}">  
                 <h1 th:inline="text">Hello, <span th:text="${#authentication.name}"></span>!</h1>  
             </div>  
               
-            <!--/* displayed if account IS null, indicating that the user IS NOT logged in */-->  
+            /* displayed if account IS null, indicating that the user IS NOT logged in */  
             <div th:unless="${#authorization.expression('isAuthenticated()')}">  
                 <h1>Who are you?</h1>  
             </div>  
@@ -37,4 +37,4 @@
     </div>  
 </div>  
 </body>  
-</html>
+</html> -->

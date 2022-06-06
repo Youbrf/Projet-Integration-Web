@@ -8,14 +8,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import org.springframework.security.core.GrantedAuthority;
+
 @Entity
 @Table(name="users")
-public class User {
+public class User  {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
@@ -25,6 +25,17 @@ public class User {
 	private String lastname;
     private String email;
 	private String langue;
+	
+	
+	public User( String login, String password) {
+		super();
+	
+		this.login = login;
+		this.password = password;
+	
+	}
+
+
 	private LocalDateTime created_at;
 	
 	@ManyToMany(mappedBy = "users")
@@ -147,4 +158,7 @@ public User addRepresentation(Representation representation) {
 	public String toString() {
 		return login + "(" + firstname + " " + lastname + ")";
 	}
+
+	
+	
 }

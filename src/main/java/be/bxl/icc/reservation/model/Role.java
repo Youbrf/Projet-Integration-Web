@@ -13,14 +13,17 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import org.springframework.security.core.GrantedAuthority;
+
 
 @Entity
 @Table(name="roles")
-public class Role {
+public class Role implements GrantedAuthority {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
 	private String role;
+	
 	
 	@ManyToMany
 	@JoinTable(
@@ -78,6 +81,13 @@ public class Role {
 		return "Role [id=" + id + ", role=" + role + "]";
 	}
 
+	@Override
+	public String getAuthority() {
+		
+		return role;
+	}
+
+	
 	
 	
 }
