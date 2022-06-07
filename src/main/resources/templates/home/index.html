@@ -11,9 +11,19 @@ xmlns:layout="http://www.ultraq.net.mx/thymeleaf/layout">
     <body>
         <div th:replace="fragments/header :: header">Header here</div>
         <div class="container">
-            <div layout:fragment="content">Main content will be inserted here.</div>
-        </div>
-      <div th:replace="fragments/footer :: footer">&copy; 2016 The Static Templates</div>
+        <br>
+        <br>
+            <div layout:fragment="content"></div>
+            <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img th:src="@{images/spectacle.jpg}" class="d-block w-100 h-100%" alt="...">
+    </div>
+    
+  </div>
+</div>
+       <br>   
+      <div class="text-center" th:replace="fragments/footer :: footer">&copy; 2016 The Static Templates</div>
       <th:block layout:fragment="scripts">
       <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
