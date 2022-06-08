@@ -4,26 +4,43 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-import org.springframework.security.core.GrantedAuthority;
+
+
+
 
 @Entity
 @Table(name="users")
 public class User  {
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
+	
+	@Column(nullable=false,unique=true,length=20)
 	private String login;
+	
+	@Column(nullable=false,unique=true,length=20)
 	private String password;
+	
+	@Column(nullable=false,length=40)
 	private String firstname;
+	
+	@Column(nullable=false,length=40)
 	private String lastname;
+	
+	@Column(nullable=false,unique=true,length=20)
     private String email;
+	
+	@Column(nullable=false,length=2)
 	private String langue;
 	
 	
@@ -38,14 +55,14 @@ public class User  {
 
 	private LocalDateTime created_at;
 	
-	@ManyToMany(mappedBy = "users")
+	@ManyToMany(mappedBy = "users",fetch = FetchType.EAGER,cascade= CascadeType.ALL)
 	private List<Role> roles = new ArrayList<>();
 	
 	@ManyToMany(mappedBy = "users")
 	private List<Representation> representations = new ArrayList<>();
 
 
-	protected User() {}
+	public User() {}
 
 	public User(String login, String firstname, String lastname) {
 		this.login = login;
@@ -131,6 +148,10 @@ public class User  {
 		
 		return this;
 	}
+	public void setCreated_at(LocalDateTime created_at) {
+		this.created_at = created_at;
+	}
+
 	public List<Representation> getRepresentations() {
 		return representations;
 	}

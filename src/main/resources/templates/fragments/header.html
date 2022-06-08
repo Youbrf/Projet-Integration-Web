@@ -19,14 +19,15 @@
         <a class="nav-link" th:href="@{/}">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" th:href="@{representations}">Catalogue</a>
+        <a class="nav-link" th:href="@{/representations}">Catalogue</a>
       </li>
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Inscription
+        <a class="nav-link dropdown-toggle"th:href="@{/home}"  id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          services
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" th:href="@{/login}">Connection</a>
+          <a class="dropdown-item" th:href="@{/register}">Inscription</a>
+          <a class="dropdown-item" th:href="@{/login}">Login</a>
           <a class="dropdown-item" href="#">Déconnection</a>
           <!-- <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#">Something else here</a>

@@ -4,7 +4,9 @@ package be.bxl.icc.reservation.model;
 import java.util.ArrayList;
 import java.util.List;
 
+
 import javax.persistence.Entity;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -13,14 +15,14 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-import org.springframework.security.core.GrantedAuthority;
+
 
 
 @Entity
 @Table(name="roles")
-public class Role implements GrantedAuthority {
+public class Role  {
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	private String role;
 	
@@ -81,12 +83,7 @@ public class Role implements GrantedAuthority {
 		return "Role [id=" + id + ", role=" + role + "]";
 	}
 
-	@Override
-	public String getAuthority() {
-		
-		return role;
-	}
-
+	
 	
 	
 	
