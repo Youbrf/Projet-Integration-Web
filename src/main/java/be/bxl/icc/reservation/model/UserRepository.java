@@ -1,13 +1,16 @@
 package be.bxl.icc.reservation.model;
 
-import java.util.List;
 
+
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
 public interface UserRepository extends CrudRepository<User, Long> {
-	List<User> findByLastname(String lastname);
+	
+	@Query("Select u FROM Users u WHERE u.email=?1")
+	User findByEmail(String email);
 
 	User findById(long id);
 	User findByLogin(String login);
-	User findByEmail(String email);
+	
 }

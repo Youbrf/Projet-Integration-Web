@@ -50,6 +50,15 @@ public void testcreateUser() {
 	
 }
 
+@Test
+public void testFindUserByEmail() {
+	String email = "mou@yahoo.fr";
+	
+	User user = userRepo.findByEmail(email);
+	
+	assertThat(user).isNotNull();
+}
+
 
 
 
