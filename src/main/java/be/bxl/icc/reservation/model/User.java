@@ -14,8 +14,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-
-
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 
 @Entity
@@ -28,7 +28,7 @@ public class User  {
 	@Column(nullable=false,unique=true,length=20)
 	private String login;
 	
-	@Column(nullable=false,unique=true,length=20)
+	@Column(nullable=false,unique=true)
 	private String password;
 	
 	@Column(nullable=false,length=40)
@@ -84,6 +84,7 @@ public class User  {
 	}
 
 	public String getPassword() {
+
 		return password;
 	}
 

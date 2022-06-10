@@ -22,8 +22,13 @@ import be.bxl.icc.reservation.model.CustomUserDetailsService;
 public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	
-	@Autowired
-	private DataSource dataSource;
+	
+	 
+ 
+	/*
+	 * @Autowired private javax.sql.DataSource datasource;
+	 */
+	 
 	
 	@Bean
 	public UserDetailsService userDetailsService() {
@@ -58,14 +63,15 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 		
 		http.authorizeHttpRequests()
 		.antMatchers("/").authenticated()
-		.anyRequest().permitAll()
+		//.anyRequest().permitAll()
 		.and()
 		.formLogin()
 		.usernameParameter("email")
 		.defaultSuccessUrl("/login")
-		.permitAll() 
+		//.permitAll() 
 		.and()
-        .logout().logoutSuccessUrl("/").permitAll();	
+        .logout().logoutSuccessUrl("/");
+        //.permitAll();	
 		
 		
 		

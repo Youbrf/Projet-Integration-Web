@@ -3,6 +3,7 @@ package be.bxl.icc.reservation.controller;
 import java.time.LocalDateTime;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +20,8 @@ public class UserController {
 	@Autowired
 	UserService userService;
 	
+	@Autowired
+	BCryptPasswordEncoder passwordEncoder;
 	
 	@GetMapping("/register")
 	
@@ -31,6 +34,7 @@ public class UserController {
 	@PostMapping("/process_register")
 	public String processRegister(User user) {
 		user.setCreated_at(LocalDateTime.now());
+		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		userService.addUser(user);
 		return "user/register_success";
 		

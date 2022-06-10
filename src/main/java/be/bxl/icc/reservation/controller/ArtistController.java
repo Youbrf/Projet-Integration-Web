@@ -66,7 +66,7 @@ public class ArtistController {
 	    return "redirect:/artists/"+artist.getId();
 	}
 	
-	@DeleteMapping("/artists/{id}")
+	@DeleteMapping("/artists/delete/{id}")
 	public String delete(@PathVariable("id") String id, Model model) {
 	    Artist existing = service.getArtist(id);
 		
