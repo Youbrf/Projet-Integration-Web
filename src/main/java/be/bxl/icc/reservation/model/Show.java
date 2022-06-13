@@ -33,6 +33,10 @@ public class Show {
 	@Column(name="poster_url")
 	private String posterUrl;
 	
+	@ManyToOne
+	@JoinColumn(name="category_id", nullable=true)
+	private Category category;
+	
 	/**
 	 * Lieu de création du spectacle
 	 */
