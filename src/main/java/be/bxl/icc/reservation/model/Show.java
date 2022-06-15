@@ -37,6 +37,16 @@ public class Show {
 	@JoinColumn(name="category_id", nullable=true)
 	private Category category;
 	
+	
+	public Category getCategory() {
+		return category;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
+	}
+
+
 	/**
 	 * Lieu de création du spectacle
 	 */

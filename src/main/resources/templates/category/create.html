@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:layout="http://www.ultraq.net.mx/thymeleaf/layout"
+ layout:decorate="~{layouts/main}">
+<head>
+<title>Création d'une category</title>
+<style>
+.fieldError { color: red; }
+</style>
+</head>
+<body>
+	<div class="container">
+	     <div layout:fragment="content">
+	        <h1>Nouvelle categorie</h1>
+	        
+	        <form th:action="@{/category/create}" th:object="${category}" method="post">
+		        <div>
+		        	<label>Category name:</label>
+		        	<input type="text" th:field="*{category}" required maxlength="10">
+					<p th:if="${#fields.hasErrors('category')}"
+               			th:errors="*{category}" th:errorclass="fieldError"></p>
+		        </div>
+		        <div>
+		        	<button type="submit" th:text="Ajouter">Ajouter</button>
+		        	<button type="reset" th:text="Réinitialiser">Réinitialiser</button>
+		        	<a th:href="@{/category}">Annuler</a>
+		        </div>
+		    </form>
+		    
+   	        <nav><a th:href="@{/category}">Retour à l'index</a></nav>
+	     </div>
+	</div>
+</body>
+</html>

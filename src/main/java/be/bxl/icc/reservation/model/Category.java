@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name="category")
@@ -16,17 +18,41 @@ public class Category {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+	
+	@NotEmpty(message = "The category must not be empty.")
+	@Size(min=2, max=10, message = "The category must be between 2 and 10 characters long.")
 	private String category;
 	
 	@OneToMany(targetEntity=Show.class,mappedBy="category")
-	private List<Show> show = new ArrayList<>();	
+	private List<Show> shows = new ArrayList<>();	
 	
 	public List<Show> getShow() {
-		return show;
+		return shows;
 	}
 	public void setShow(List<Show> show) {
-		this.show = show;
+		this.shows = show;
 	}
+	
+	public Category addshow(Show show) {
+		if(!this.shows.contains(show)) {
+			this.shows.add(show);
+			show.setCategory(this);
+		}
+		
+		return this;
+	}
+	
+	public Category removeShow(Show show) {
+		if(this.shows.contains(show)) {
+			this.shows.remove(show);
+			if(show.getCategory().equals(this)) {
+				show.setCategory(null);
+			}
+		}
+		
+		return this;
+	}
+	
 	public Category() {
 		super();
 	}

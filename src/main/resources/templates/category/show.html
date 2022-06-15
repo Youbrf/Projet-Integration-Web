@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.mx/thymeleaf/layout"
+ layout:decorate="~{layouts/main}">
+<head>
+<title>Fiche d'une category</title>
+</head>
+<body>
+	<div class="container">
+	     <div layout:fragment="content">
+	        <h1 th:text="${#strings.capitalize(category.category)}">Rap</h1>
+	        <h2>Liste des spectacles</h2>
+	        <ul th:unless="${#lists.isEmpty(category.show)}">
+	        	<li th:each="show : ${category.show}" 
+		th:text="${show.title}">Ayiti </li>
+   	        </ul>
+
+
+	        <nav><a th:href="@{/category}">Retour à l'index</a></nav>
+	     </div>
+	</div>
+</body>
+</html>
