@@ -26,8 +26,8 @@ public class ArtistService {
 		return artistRepository.findById(indice);
 	}
 
-	public void addArtist(Artist artist) {
-		artistRepository.save(artist);
+	public Artist addArtist(Artist artist) {
+		return artistRepository.save(artist);
 	}
 
 	public void updateArtist(String id, Artist artist) {

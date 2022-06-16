@@ -10,7 +10,7 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface UserRepository extends JpaRepository<User, Long> {
 	
-	//@Query("SELECT id FROM users u WHERE u.email = ?1")
+	@Query("SELECT u from User u WHERE u.email = ?1")
 	User findByEmail(String email);
 
 	User findById(long id);

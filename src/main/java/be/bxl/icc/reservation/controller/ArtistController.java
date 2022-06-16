@@ -15,16 +15,20 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 
-
 import be.bxl.icc.reservation.model.Artist;
 import be.bxl.icc.reservation.model.ArtistService;
 
 
+
 @Controller
 public class ArtistController {
+	
+	
 	@Autowired
 	ArtistService service;
 
+	
+	
 	@GetMapping("/artists")
 	public String index(Model model) {
 	    List<Artist> artists = service.getAllArtists();
@@ -48,7 +52,8 @@ public class ArtistController {
 	@GetMapping("/artists/create")
 	public String create(Model model) {
 	    Artist artist = new Artist(null,null);
-
+		
+		
 	    model.addAttribute("artist", artist);
 		
 	    return "artist/create";

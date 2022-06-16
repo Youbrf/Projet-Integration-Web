@@ -15,7 +15,9 @@ class ReservationApplicationTests {
 
 	@Autowired
 	private ArtistRepository artistRepository;
+	
 
+	
 	
 	  @Test public void testFindByLastname() {
 	  
@@ -35,9 +37,13 @@ class ReservationApplicationTests {
 	  @Test public void testListerTousArtist() { List<Artist> art = (List<Artist>)
 	  artistRepository.findAll(); for (Artist p : art) { System.out.println(p); } }
 	 
+	 
+	
+	  
+		  
+	  }
 	
 	
 	
 	
-	}
 
