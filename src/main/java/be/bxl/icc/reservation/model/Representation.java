@@ -24,6 +24,22 @@ public class Representation {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
 
+	/**
+	 * relation avec la table rooms
+	 */
+	@ManyToOne
+	@JoinColumn(name="room_id", nullable=false)
+	private Rooms room;
+	
+	public Rooms getRoom() {
+		return room;
+	}
+
+	public void setRoom(Rooms room) {
+		this.room = room;
+	}
+
+
 	@ManyToOne
 	@JoinColumn(name="show_id", nullable=false)
 	private Show show;
@@ -44,7 +60,11 @@ public class Representation {
 
 	public Representation() { }
 	
-	public Representation(Show show, LocalDateTime when) {
+	
+
+	public Representation(Rooms room, Show show, LocalDateTime when) {
+		super();
+		this.room = room;
 		this.show = show;
 		this.when = when;
 	}
@@ -93,7 +113,7 @@ public class Representation {
 
 	@Override
 	public String toString() {
-		return "Representation [id=" + id + ", show=" + show + ", when=" + when + "]";
+		return "Representation [id=" + id + ", room=" + room + ", show=" + show + ", when=" + when + "]";
 	}
 	
 }

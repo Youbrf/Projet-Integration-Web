@@ -46,4 +46,8 @@ public class RepresentationService {
 	public List<Representation> getFromShow(Show show) {
 		return repository.findByShow(show);
 	}
+	
+	public List<Representation> getFromShow(Rooms room) {
+		return repository.findByRoom(room);
+	}
 }

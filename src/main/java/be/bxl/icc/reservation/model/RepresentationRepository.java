@@ -7,5 +7,6 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface RepresentationRepository extends CrudRepository<Representation, Long> {
 	List<Representation> findByShow(Show show);
+	List<Representation> findByRoom(Rooms room);
 	List<Representation> findByWhen(LocalDateTime when);
 }

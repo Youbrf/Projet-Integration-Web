@@ -35,6 +35,36 @@ public class Location {
 	private String website;
 	private String phone;
 	
+	/**
+	 * Nombre de salle dans un lieu
+	 */
+	@OneToMany(targetEntity=Rooms.class, mappedBy="location")
+	private List<Rooms> rooms = new ArrayList<>();
+	
+	public List<Rooms> getRooms() {
+		return rooms;
+	}
+	public Location addRooms(Rooms room) {
+		if(!this.rooms.contains(room)) {
+			this.rooms.add(room);
+			room.setLocation(this);
+		}
+		
+		return this;
+	}
+	
+	public Location removeRooms(Rooms room) {
+		if(this.rooms.contains(room)) {
+			this.rooms.remove(room);
+			if(room.getLocation().equals(this)) {
+				room.setLocation(null);
+			}
+		}
+		
+		return this;
+	}
+	
+
 	@OneToMany(targetEntity=Show.class, mappedBy="location")
 	private List<Show> shows = new ArrayList<>();
 	
