@@ -42,9 +42,6 @@ public class RepresentationService {
 		repository.deleteById(indice);
 	}
 
-	public List<Representation> getFromLocation(Location location) {
-		return repository.findByLocation(location);
-	}
 	
 	public List<Representation> getFromShow(Show show) {
 		return repository.findByShow(show);

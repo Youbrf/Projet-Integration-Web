@@ -33,12 +33,6 @@ public class Representation {
 	 */
 	private LocalDateTime when;
 	
-	/**
-	 * Lieu de prestation de la représentation
-	 */
-	@ManyToOne
-	@JoinColumn(name="location_id", nullable=true)
-	private Location location;
 	
 	@ManyToMany
 	@JoinTable(
@@ -50,10 +44,9 @@ public class Representation {
 
 	public Representation() { }
 	
-	public Representation(Show show, LocalDateTime when, Location location) {
+	public Representation(Show show, LocalDateTime when) {
 		this.show = show;
 		this.when = when;
-		this.location = location;
 	}
 
 	public Show getShow() {
@@ -70,14 +63,6 @@ public class Representation {
 
 	public void setWhen(LocalDateTime when) {
 		this.when = when;
-	}
-
-	public Location getLocation() {
-		return location;
-	}
-
-	public void setLocation(Location location) {
-		this.location = location;
 	}
 
 	public Long getId() {
@@ -108,8 +93,7 @@ public class Representation {
 
 	@Override
 	public String toString() {
-		return "Representation [id=" + id + ", show=" + show + ", when=" + when 
-			+ ", location=" + location + "]";
+		return "Representation [id=" + id + ", show=" + show + ", when=" + when + "]";
 	}
 	
 }
