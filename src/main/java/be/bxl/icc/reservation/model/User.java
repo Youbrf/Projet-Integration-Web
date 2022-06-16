@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+<<<<<<< HEAD
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -63,6 +64,38 @@ public class User  {
 
 
 	public User() {}
+=======
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="users")
+public class User {
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private Long id;
+	private String login;
+	private String password;
+	private String firstname;
+	private String lastname;
+private String email;
+	private String langue;
+	private LocalDateTime created_at;
+	
+	@ManyToMany(mappedBy = "users")
+	private List<Role> roles = new ArrayList<>();
+
+	@ManyToMany(mappedBy = "users")
+	private List<Representation> representations = new ArrayList<>();
+
+	protected User() {}
+>>>>>>> c7157af6537b517182225d6af80df4e914770d67
 
 	public User(String login, String firstname, String lastname) {
 		this.login = login;
@@ -84,7 +117,10 @@ public class User  {
 	}
 
 	public String getPassword() {
+<<<<<<< HEAD
 
+=======
+>>>>>>> c7157af6537b517182225d6af80df4e914770d67
 		return password;
 	}
 
@@ -127,6 +163,31 @@ public class User  {
 	public List<Role> getRoles() {
 		return roles;
 	}
+<<<<<<< HEAD
+=======
+	public List<Representation> getRepresentations() {
+		return representations;
+	}
+
+	public User addRepresentation(Representation representation) {
+		if(!this.representations.contains(representation)) {
+			this.representations.add(representation);
+			representation.addUser(this);
+		}
+		
+		return this;
+	}
+	
+	public User removeRepresentation(Representation representation) {
+		if(this.representations.contains(representation)) {
+			this.representations.remove(representation);
+			representation.getUsers().remove(this);
+		}
+		
+		return this;
+	}
+
+>>>>>>> c7157af6537b517182225d6af80df4e914770d67
 
 	public LocalDateTime getCreated_at() {
 		return created_at;
@@ -149,6 +210,7 @@ public class User  {
 		
 		return this;
 	}
+<<<<<<< HEAD
 	public void setCreated_at(LocalDateTime created_at) {
 		this.created_at = created_at;
 	}
@@ -175,12 +237,17 @@ public User addRepresentation(Representation representation) {
 		return this;
 	}
 
+=======
+>>>>>>> c7157af6537b517182225d6af80df4e914770d67
 
 	@Override
 	public String toString() {
 		return login + "(" + firstname + " " + lastname + ")";
 	}
+<<<<<<< HEAD
 
 	
 	
+=======
+>>>>>>> c7157af6537b517182225d6af80df4e914770d67
 }

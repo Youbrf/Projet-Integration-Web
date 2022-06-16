@@ -4,7 +4,10 @@ package be.bxl.icc.reservation.model;
 import java.util.ArrayList;
 import java.util.List;
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> c7157af6537b517182225d6af80df4e914770d67
 import javax.persistence.Entity;
 
 import javax.persistence.GeneratedValue;
@@ -26,7 +29,10 @@ public class Role  {
 	private Long id;
 	private String role;
 	
+<<<<<<< HEAD
 	
+=======
+>>>>>>> c7157af6537b517182225d6af80df4e914770d67
 	@ManyToMany
 	@JoinTable(
 		  name = "user_role", 
@@ -53,7 +59,10 @@ public class Role  {
 	public void setRole(String role) {
 		this.role = role;
 	}
+<<<<<<< HEAD
 	
+=======
+>>>>>>> c7157af6537b517182225d6af80df4e914770d67
 	public List<User> getUsers() {
 		return users;
 	}
@@ -76,7 +85,10 @@ public class Role  {
 		return this;
 	}
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> c7157af6537b517182225d6af80df4e914770d67
 
 	@Override
 	public String toString() {

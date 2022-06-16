@@ -39,6 +39,7 @@ public class Representation {
 
 	/**
 	 * Lieu de prestation de la représentation
+<<<<<<< HEAD
 	 *//*
 		 * @ManyToOne
 		 * 
@@ -51,6 +52,20 @@ public class Representation {
 
 	public Representation() {
 	}
+=======
+	 */
+	@ManyToOne
+	@JoinColumn(name="location_id", nullable=true)
+	private Location location;
+	
+	@ManyToMany
+	@JoinTable(
+		  name = "reservations", 
+		  joinColumns = @JoinColumn(name = "representation_id"), 
+		  inverseJoinColumns = @JoinColumn(name = "user_id"))
+	private List<User> users = new ArrayList<>();
+
+>>>>>>> c7157af6537b517182225d6af80df4e914770d67
 
 	public Representation(Show show, LocalDateTime when, Location location) {
 		this.show = show;
@@ -113,6 +128,28 @@ public class Representation {
 		this.room = room;
 		this.room.addRepresentation(this);
 	}
+	public List<User> getUsers() {
+		return users;
+	}
+
+	public Representation addUser(User user) {
+		if(!this.users.contains(user)) {
+			this.users.add(user);
+			user.addRepresentation(this);
+		}
+		
+		return this;
+	}
+	
+	public Representation removeUser(User user) {
+		if(this.users.contains(user)) {
+			this.users.remove(user);
+			user.getRepresentations().remove(this);
+		}
+		
+		return this;
+	}
+
 
 	@Override
 	public String toString() {

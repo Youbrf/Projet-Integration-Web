@@ -4,6 +4,9 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -52,8 +55,12 @@ public class ArtistController {
 	@GetMapping("/artists/create")
 	public String create(Model model) {
 	    Artist artist = new Artist(null,null);
+<<<<<<< HEAD
 		
 		
+=======
+
+>>>>>>> c7157af6537b517182225d6af80df4e914770d67
 	    model.addAttribute("artist", artist);
 		
 	    return "artist/create";
@@ -70,6 +77,7 @@ public class ArtistController {
 	    
 	    return "redirect:/artists/"+artist.getId();
 	}
+<<<<<<< HEAD
 	
 	@DeleteMapping("/artists/delete/{id}")
 	public String delete(@PathVariable("id") String id, Model model) {
@@ -84,6 +92,9 @@ public class ArtistController {
 	    return "redirect:/artists";
 	}
 	
+=======
+
+>>>>>>> c7157af6537b517182225d6af80df4e914770d67
 	@GetMapping("/artists/{id}/edit")
 	public String edit(Model model, @PathVariable("id") String id, HttpServletRequest request) {
 		Artist artist = service.getArtist(id);
@@ -119,14 +130,34 @@ public class ArtistController {
 		Long indice = (long) Integer.parseInt(id);
 		
 		artist.setId(indice);
+<<<<<<< HEAD
 	    	service.updateArtist(id, artist);
+=======
+	    service.updateArtist(artist.getId(), artist);
+>>>>>>> c7157af6537b517182225d6af80df4e914770d67
 	    
 		model.addAttribute("artist", artist);
 	    
 		return "redirect:/artists/"+artist.getId();
 	}
+<<<<<<< HEAD
 	
 	
+=======
+
+	@DeleteMapping("/artists/{id}")
+	public String delete(@PathVariable("id") String id, Model model) {
+	    Artist existing = service.getArtist(id);
+		
+	    if(existing!=null) {
+		Long indice = (long) Integer.parseInt(id);
+		
+	    	service.deleteArtist(indice);
+	    }
+	    	    
+	    return "redirect:/artists";
+	}
+>>>>>>> c7157af6537b517182225d6af80df4e914770d67
 
 
 }

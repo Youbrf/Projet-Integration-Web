@@ -9,9 +9,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+<<<<<<< HEAD
 import javax.validation.constraints.Size;
 import javax.validation.constraints.NotEmpty;
 
+=======
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
+>>>>>>> c7157af6537b517182225d6af80df4e914770d67
 
 
 @Entity
@@ -23,11 +28,18 @@ public class Artist {
 	
 	@NotEmpty(message = "The firstname must not be empty.")
 	@Size(min=2, max=60, message = "The firstname must be between 2 and 60 characters long.")
+<<<<<<< HEAD
     private String firstname;
 	
 	@NotEmpty(message = "The lastname must not be empty.")
 	@Size(min=2, max=60, message = "The firstname must be between 2 and 60 characters long.")
 
+=======
+	private String firstname;
+	
+	@NotEmpty(message = "The lastname must not be empty.")
+	@Size(min=2, max=60, message = "The firstname must be between 2 and 60 characters long.")
+>>>>>>> c7157af6537b517182225d6af80df4e914770d67
 	private String lastname;
 	
 	public void setId(Long id) {
@@ -50,6 +62,10 @@ public class Artist {
 
 	public Long getId() {
 		return id;
+	}
+	
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getFirstname() {

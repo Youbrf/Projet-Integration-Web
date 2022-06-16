@@ -2,7 +2,11 @@
 <html lang="fr" xmlns:layout="http://www.ultraq.net.mx/thymeleaf/layout"
  layout:decorate="~{layouts/main}">
 <head>
+<<<<<<< HEAD
 <title>Création d'un artiste</title>
+=======
+<title>CrÃ©ation d'un artiste</title>
+>>>>>>> c7157af6537b517182225d6af80df4e914770d67
 <style>
 .fieldError { color: red; }
 </style>
@@ -16,23 +20,39 @@
 		        <div>
 		        	<label>Firstname:</label>
 		        	<input type="text" th:field="*{firstname}">
+<<<<<<< HEAD
 		<p th:if="${#fields.hasErrors('firstname')}"
+=======
+					<p th:if="${#fields.hasErrors('firstname')}"
+>>>>>>> c7157af6537b517182225d6af80df4e914770d67
                			th:errors="*{firstname}" th:errorclass="fieldError"></p>
 		        </div>
 		        <div>
 		        	<label>Lastname:</label>
 		        	<input type="text" th:field="*{lastname}">
+<<<<<<< HEAD
 		<p th:if="${#fields.hasErrors('lastname')}"
+=======
+					<p th:if="${#fields.hasErrors('lastname')}"
+>>>>>>> c7157af6537b517182225d6af80df4e914770d67
                			th:errors="*{lastname}" th:errorclass="fieldError"></p>
 		        </div>
 		        <div>
 		        	<button type="submit" th:text="Modifier">Modifier</button>
+<<<<<<< HEAD
 		        	<button type="reset" th:text="Réinitialiser">Réinitialiser</button>
+=======
+		        	<button type="reset" th:text="RÃ©initialiser">RÃ©initialiser</button>
+>>>>>>> c7157af6537b517182225d6af80df4e914770d67
 		        	<a th:href="@{/artists}">Annuler</a>
 		        </div>
 		    </form>
 		    
+<<<<<<< HEAD
    	        <nav><a th:href="@{/artists}">Retour à l'index</a></nav>
+=======
+   	        <nav><a th:href="@{/artists}">Retour Ã  l'index</a></nav>
+>>>>>>> c7157af6537b517182225d6af80df4e914770d67
 	     </div>
 	</div>
 </body>

@@ -30,12 +30,17 @@ public class ArtistService {
 		return artistRepository.save(artist);
 	}
 
-	public void updateArtist(String id, Artist artist) {
+	public void updateArtist(Long long1, Artist artist) {
 		artistRepository.save(artist);
 	}
 
+<<<<<<< HEAD
 	public void deleteArtist(long id) {
 		 long indice =id;
+=======
+	public void deleteArtist(Long indice2) {
+		Long indice = indice2;
+>>>>>>> c7157af6537b517182225d6af80df4e914770d67
 		
 		artistRepository.deleteById(indice);
 	}

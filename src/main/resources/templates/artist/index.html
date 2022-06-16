@@ -6,6 +6,7 @@
 </head>
 <body>
 	<div class="container">
+<<<<<<< HEAD
 		<div layout:fragment="content">
 			<h1 class="rounded border border-dark p-2 m-2 text-center text-black bg-light" th:text="${title}">LISTE DES ARTISTES</h1>
 			<br>
@@ -47,6 +48,44 @@
 				<button class="btn btn-outline-primary text-white"><a th:href="@{/artists/create}">Add new artist</a></button>
 			</div>
 		</div>
+=======
+	     <div layout:fragment="content">
+	        <h1 th:text="${title}">Liste des artistes</h1>
+	        
+	        <div class="actions">
+				<a th:href="@{/artists/create}">Add new artist</a>
+	        </div>
+
+	        <table th:unless="${#lists.isEmpty(artists)}">
+	            <thead>
+	                <tr>
+	                    <th>Firstname</th>
+	                    <th>Lastname</th>
+	                    <th colspan="2">Actions</th>
+	                </tr>
+	            </thead>
+	            <tbody>
+	                <tr th:each="artist : ${artists}">
+	                    <td th:text="${artist.firstname}">Bob</td>
+	                    <td th:text="${artist.lastname}">Sull</td>
+		       			<td><a th:href="@{/artists/{id}(id=${artist.id})}">View</a></td>
+	                    <td><a th:href="@{/artists/{id}/edit(id=${artist.id})}">Edit</a></td>
+	                    <td>
+	                    	<form th:id="|deleteForm-${artist.id}|" 
+			 					  	th:action="@{/artists/{id}(id=${artist.id})}" th:method="delete">
+		                    		<a href="#" 
+								    th:onclick="|if(confirm('Confirm delete artist #${artist.id}')) 
+		                    		document.getElementById('deleteForm-${artist.id}').submit(); 
+		                    		return false;|">Delete</a>
+	                    	</form>
+	                    </td>
+
+	                </tr>
+
+	            </tbody>
+	        </table>
+	    </div>
+>>>>>>> c7157af6537b517182225d6af80df4e914770d67
 	</div>
 	<br>
 </body>

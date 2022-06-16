@@ -20,5 +20,8 @@ ALTER TABLE `user_role`
 
 ALTER TABLE `user_role`
   ADD CONSTRAINT `user_role_role_id` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON UPDATE CASCADE ON DELETE RESTRICT;
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> c7157af6537b517182225d6af80df4e914770d67

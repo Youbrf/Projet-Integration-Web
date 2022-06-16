@@ -1,5 +1,6 @@
 package be.bxl.icc.reservation.model;
 
+<<<<<<< HEAD
 
 
 
@@ -17,3 +18,16 @@ public interface UserRepository extends JpaRepository<User, Long> {
 	User findByLogin(String login);
 	
 }
+=======
+import java.util.List;
+
+import org.springframework.data.repository.CrudRepository;
+
+public interface UserRepository extends CrudRepository<User, Long> {
+	List<User> findByLastname(String lastname);
+
+	User findById(long id);
+	User findByLogin(String login);
+	User findByEmail(String email);
+}
+>>>>>>> c7157af6537b517182225d6af80df4e914770d67
