@@ -10,12 +10,14 @@
 	        <h1 th:text="|${locality.postalCode}  ${locality.locality}|">1000 Bruxelles</h1>
 	    
 	        <ul th:unless="${#lists.isEmpty(locality.locations)}">
-	       	<li th:each="location : ${locality.locations}" 
-    			 th:text="${location.designation}">Dexia Art center</li>
+	       	<li th:each="location : ${locality.locations}">
+				<span th:text="${location.designation}">Dexia Art center</span> 
+    			 <a th:href="@{/localities/location/{id}(id=${location.id})}">View rooms</a>
+			</li>
    	        </ul>
 
    	        <p th:if="${#lists.isEmpty(locality.locations)}">Aucun lieu de spectacle.</p>
-        
+			   
 	        <nav><a th:href="@{/localities}">Retour à l'index</a></nav>
 	     </div>
 	</div>

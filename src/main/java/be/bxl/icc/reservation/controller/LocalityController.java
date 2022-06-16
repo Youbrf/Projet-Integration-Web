@@ -11,12 +11,18 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import be.bxl.icc.reservation.model.Locality;
 import be.bxl.icc.reservation.model.LocalityService;
+import be.bxl.icc.reservation.model.Location;
+import be.bxl.icc.reservation.model.LocationService;
+import be.bxl.icc.reservation.model.Rooms;
 
 
 @Controller
 public class LocalityController {
 	@Autowired
 	LocalityService service;
+	
+	@Autowired
+	LocationService serviceLocation;
 
 	@GetMapping("/localities")
     public String index2(Model model) {
@@ -36,6 +42,16 @@ public class LocalityController {
 		model.addAttribute("title", "Fiche d'une localité");
 		
         return "locality/show";
+    }
+	
+	@GetMapping("/localities/location/{id}")
+    public String showRooms(Model model, @PathVariable("id") String id) {
+		Location location = serviceLocation.get(id);
+
+		model.addAttribute("location", location);
+		model.addAttribute("title", "Fiche d'une localion");
+		
+        return "location/show";
     }
 
 }

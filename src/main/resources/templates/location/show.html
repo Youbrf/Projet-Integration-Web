@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.mx/thymeleaf/layout"
+ layout:decorate="~{layouts/main}">
+<head>
+<title>Fiche d'une location</title>
+</head>
+<body>
+	<div class="container">
+	     <div layout:fragment="content">
+	        <h1 th:text="${location.designation}">Dexia Art center</h1>
+	    
+	        <ul th:unless="${#lists.isEmpty(location.rooms)}">
+	       	<li th:each="location : ${location.rooms}">
+                   <span th:text="${location.name}">Ubuntu</span> 
+                   <span th:text="| ${location.seats} places|" >50 places</span>
+    			 </li>
+   	        </ul>
+
+   	        <p th:if="${#lists.isEmpty(location.rooms)}">Aucun salle.</p>
+	        <nav><a th:href="@{/localities}">Retour à l'index</a></nav>
+	     </div>
+	</div>
+</body>
+</html>
