@@ -31,9 +31,10 @@
 							<td th:unless="${#lists.isEmpty(category.shows)}">
 							<p th:each="show : ${category.shows}" 
 							th:text="${show.title}"></p>
-							<p th:if="${#lists.isEmpty(category.shows)}">Aucun lieu de spectacle.</p>
+							
+							
 							</td>
-							 
+							  <p th:if="${#lists.isEmpty(category.shows)}">Aucun lieu de spectacle.</p>
 							
 							
 							<td><a th:href="@{/categories/{id}(id=${category.id})}">View</a></td>

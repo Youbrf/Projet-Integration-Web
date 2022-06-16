@@ -31,17 +31,18 @@ public class CategoryService {
 	    }
 	
 	public Category addCategory(Category category) {
-		return catRepo.save(null);
+		return catRepo.save(category);
 		
 	}
 	
 	public Category updateCategory(Long id ,Category category) {
-		return catRepo.save(null);
+		return catRepo.save(category);
 		
 	}
 	
 	public void deleteCategoryById(Long id) {
-		catRepo.deleteById(id);
+		 long indice =id;
+		catRepo.deleteById(indice);
 	
 	}
 
@@ -52,9 +53,13 @@ public class CategoryService {
 	}
 	
 	
+		
+	}
 	
 	
 	
 	
 	
-}
+	
+	
+
