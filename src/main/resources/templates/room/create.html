@@ -7,26 +7,19 @@
 <div layout:fragment="content">
 			<h1
 				class="rounded border border-dark p-2 m-2 text-center text-black bg-light">Nouvelle
-				categorie</h1>
+				salle </h1>
 			<br> <br>
 
-			<form th:action="@{/categories/create}" th:object="${category}"
-				method="post">
+			<form th:action="@{/rooms/create}" th:object="${room}"
+				method="POST">
 				<div>
-					<!-- <div class="mb-3">
-						<div>
-							<label>Name:</label><br> 
-							<input type="text" th:field="*{name}" class="form-check-input" id="dropdownCheck">
-							<p th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
-								th:errorclass="fieldError"></p>
-						</div>
-					</div> -->
+					
 
-					<label>Nom de la nouvelle categorie</label><br>
+					<label>Nom de la nouvelle salle</label><br>
 					 <select th:field="*{name}" required minlength="2" maxlength="10">
-					  <option value="default">Select une categorie </option>
-						<option th:each= "categoryName : ${categoryName}" th:value="${categoryName}" 
-							th:text="${categoryName}" />
+					  <option value="default">Select une salle </option>
+						<option th:each= "roomName : ${roomName}" th:value="${Name}" 
+							th:text="${roomName}" />
 					</select>
 					 <br><br>
 					<div>
@@ -35,7 +28,7 @@
 						<button type="reset" class="btn btn-outline-primary text-black"
 							th:text="Reinitialiser">Reinitialiser</button>
 						<button type="reset" class="btn btn-outline-primary text-black">
-							<a th:href="@{/categories}"></a>Annuler
+							<a th:href="@{/rooms}"></a>Annuler
 						</button>
 					</div>
 			</form>
@@ -43,7 +36,7 @@
 			<div class="actions text-right">
 				<button class="btn btn-outline-primary text-black">
 					
-						<a th:href="@{/categories}">Retour a l'index</a>
+						<a th:href="@{/rooms}">Retour a l'index</a>
 					
 				</button>
 			</div>

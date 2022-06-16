@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.mx/thymeleaf/layout"
+	layout:decorate="~{layouts/main}">
+<head>
+<title>Fiche d'une salle</title>
+</head>
+<body>
+<body>
+	<div class="container">
+		<div layout:fragment="content">
+			<h1 class="rounded border border-dark p-2 m-2 text-center text-black bg-light" th:text="${#strings.capitalize(room.name)}"></h1>
+			<br>
+			<h2 class = "text-center">Liste des representations</h2>
+			<br>
+			<ul th:unless="${#lists.isEmpty(room.location)}">
+				<li th:each="location : ${room.location}" th:text="${location}">
+				</li>
+			</ul>
+<br>
+         <p th:if="${#lists.isEmpty(room.location)}">Aucune salle.</p>
+        
+			<nav>
+				<button class="btn btn-outline-primary text-white"><a th:href="@{/rooms}"> Retour a l'index</a></button>
+			</nav>
+		</div>
+	</div>
+</body>
+
+
+</html>

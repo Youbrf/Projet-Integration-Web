@@ -14,19 +14,19 @@
 	        </p>
 	        <canvas th:unless="${show.posterUrl}" width="200" height="100" style="border:1px solid #000000;"></canvas>
         
-	        <p th:if="${show.location}"><strong>Lieu de création:</strong> <span th:text="${show.location.designation}">Art Center</span></p>
+	        <p th:if="${show.location}"><strong>Lieu de creation:</strong> <span th:text="${show.location.designation}">Art Center</span></p>
 	
 	        <p><strong>Prix:</strong> <span th:text="${show.price} + ' â‚¬'">9.99 â‚¬</span></p>
         
-	        <p th:if="${show.bookable}"><em>Réservable</em></p>
-	        <p th:unless="${show.bookable}"><em>Non réservable</em></p>
+	        <p th:if="${show.bookable}"><em>Reservable</em></p>
+	        <p th:unless="${show.bookable}"><em>Non reservable</em></p>
 	        
-	               <h2>Liste des représentations</h2>
+	               <h2>Liste des representations</h2>
 	        <ul th:if="${#lists.size(show.representations)>=1}">
 	                <li th:each="representation : ${show.representations}" 
 th:text="${#temporals.format(representation.when,'dd-MM-yyyy HH:mm')}">12-10-2012 13:30</li>              
 	        </ul>
-	        <p th:if="${#lists.size(show.representations)==0}">Aucune représentation</p>
+	        <p th:if="${#lists.size(show.representations)==0}">Aucune representation</p>
 
 	       <h2>Liste des artistes</h2>
 	        <ul th:if="${#lists.size(show.artistTypes)>=1}">

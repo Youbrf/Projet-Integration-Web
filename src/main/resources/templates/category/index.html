@@ -28,14 +28,12 @@
 							<th scope="row" th:text="${category.id}"></th>
 							<td th:text="${category.name}"></td>
 							
+							
 							<td th:unless="${#lists.isEmpty(category.shows)}">
 							<p th:each="show : ${category.shows}" 
 							th:text="${show.title}"></p>
-							
-							
+							<td th:if="${#lists.isEmpty(category.shows)}">Aucun lieu de spectacle.</td>
 							</td>
-							  <p th:if="${#lists.isEmpty(category.shows)}">Aucun lieu de spectacle.</p>
-							
 							
 							<td><a th:href="@{/categories/{id}(id=${category.id})}">View</a></td>
 							<!-- <td><a th:href="@{/artists/{id}/edit(id=${artist.id})}">Edit</a></td>
@@ -55,8 +53,10 @@
 			</table>
 			 <br>
 		<div class="actions text-right">
-		<button class="btn btn-outline-primary text-white"><a th:href="@{/categories/create}">Add new category</a></button>
-	        </div>
+		<button class="btn btn-outline-primary text-black">
+		<nav><a th:href="@{/categories/create}"> Add new category</a>
+	        </nav>
+	       </button></div>
 		</div>
 	</div>
 	<br>

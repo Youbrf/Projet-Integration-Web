@@ -96,25 +96,22 @@ public class Show {
 		return representations;
 	}
 
-	public Show addRepresentation(Representation representation) {
-		if(!this.representations.contains(representation)) {
-			this.representations.add(representation);
-			representation.setShow(this);
-		}
+	/*
+	 * public Show addRepresentation(Representation representation) {
+	 * if(!this.representations.contains(representation)) {
+	 * this.representations.add(representation); representation.setShow(this); }
+	 * 
+	 * return this; }
+	 * 
+	 * public Show removeRepresentation(Representation representation) {
+	 * if(this.representations.contains(representation)) {
+	 * this.representations.remove(representation);
+	 * if(representation.getLocation().equals(this)) {
+	 * representation.setLocation(null); } }
+	 
 		
 		return this;
-	}
-	
-	public Show removeRepresentation(Representation representation) {
-		if(this.representations.contains(representation)) {
-			this.representations.remove(representation);
-			if(representation.getLocation().equals(this)) {
-				representation.setLocation(null);
-			}
-		}
-		
-		return this;
-	}
+	}*/
 
 	public Show() { }
 	

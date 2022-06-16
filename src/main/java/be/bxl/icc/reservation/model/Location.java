@@ -38,32 +38,36 @@ public class Location {
 	@OneToMany(targetEntity=Show.class, mappedBy="location")
 	private List<Show> shows = new ArrayList<>();
 	
-	@OneToMany(targetEntity=Representation.class, mappedBy="location")
-	private List<Representation> representations = new ArrayList<>();
+	@OneToMany(targetEntity = Rooms.class, mappedBy = "location")
+	private List<Rooms> rooms = new ArrayList<>();
+	
+	
+	
+	
+	/*
+	 * @OneToMany(targetEntity=Representation.class, mappedBy="location") private
+	 * List<Representation> representations = new ArrayList<>();
+	 
 
 	public List<Representation> getRepresentations() {
 		return representations;
-	}
+	}*/
 
-	public Location addRepresentation(Representation representation) {
-		if(!this.representations.contains(representation)) {
-			this.representations.add(representation);
-			representation.setLocation(this);
-		}
-		
-		return this;
-	}
-	
-	public Location removeRepresentation(Representation representation) {
-		if(this.representations.contains(representation)) {
-			this.representations.remove(representation);
-			if(representation.getLocation().equals(this)) {
-				representation.setLocation(null);
-			}
-		}
-		
-		return this;
-	}
+	/*
+	 * public Location addRepresentation(Representation representation) {
+	 * if(!this.representations.contains(representation)) {
+	 * this.representations.add(representation); representation.setLocation(this); }
+	 * 
+	 * return this; }
+	 * 
+	 * public Location removeRepresentation(Representation representation) {
+	 * if(this.representations.contains(representation)) {
+	 * this.representations.remove(representation);
+	 * if(representation.getLocation().equals(this)) {
+	 * representation.setLocation(null); } }
+	 * 
+	 * return this; }
+	 */
 
 
 	public List<Show> getShows() {
@@ -84,6 +88,25 @@ public class Location {
 			this.shows.remove(show);
 			if(show.getLocation().equals(this)) {
 				show.setLocation(null);
+			}
+		}
+		
+		return this;
+	}
+	public Location addSeat(Rooms room) {
+		if(!this.rooms.contains(room)) {
+			this.rooms.add(room);
+			room.setLocation(this);
+		}
+		
+		return this;
+	}
+	
+	public Location removeSeat(Rooms room) {
+		if(this.rooms.contains(room)) {
+			this.rooms.remove(room);
+			if(room.getLocation().equals(this)) {
+				room.setLocation(null);
 			}
 		}
 		
@@ -167,7 +190,7 @@ public class Location {
 		return "Location [id=" + id + ", slug=" + slug + ", designation=" + designation 
 			+ ", address=" + address	+ ", locality=" + locality + ", website=" 
 			+ website + ", phone=" + phone + ", shows=" + shows.size()
-			+ ", representations=" + representations.size() + "]";
+			+ ", representations="  + "]";
 	}
  
 

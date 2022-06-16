@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:layout="http://www.ultraq.net.mx/thymeleaf/layout"
+	layout:decorate="~{layouts/main}">
+<head>
+<title>Liste des salles</title>
+</head>
+<body>
+	<div class="container">
+		<div layout:fragment="content">
+			<h1 class="rounded border border-dark p-2 m-2 text-center text-black bg-light" th:text="${title}"></h1>
+			<br>
+
+
+			<table class="table">
+			<th:unless="${#lists.isEmpty(rooms)}">
+				<thead class="table-success">
+					<tr>
+						<th scope="col" >Id</th>
+						<th scope="col">name</th>
+						<th scope="col">seats</th>
+						<th colspan="3" style class="text-center">Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each ="rooms : ${rooms}">
+						
+
+							<th scope="row" th:text="${rooms.id}"></th>
+							<td th:text="${rooms.name}"></td>
+							<td th:text="${rooms.seats}"></td>
+							
+							
+							
+							<td><a th:href="@{/rooms/{id}(id=${rooms.id})}">View</a></td>
+							
+							
+					</tr>
+				</tbody>
+			</table>
+			 <br>
+		<div class="actions text-right">
+		<button class="btn btn-outline-primary text-black">
+		<nav><a th:href="@{/rooms/create}"> Add new category</a>
+	        </nav>
+	       </button></div>
+		</div>
+	</div>
+	<br>
+</body>
+</html>

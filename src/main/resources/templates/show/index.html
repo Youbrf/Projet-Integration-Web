@@ -15,10 +15,27 @@
 	    	    <span th:if="${show.bookable}" th:text="${show.price} + ' €'">9.99 €</span>
 	    	    <span th:if="${#lists.size(show.representations)==1}">- 1 representation</span>
 		    <span th:if="${#lists.size(show.representations)>1}" 
-			th:text="|- ${#lists.size(show.representations)} représentations|">- 2 representations</span>
+			th:text="|- ${#lists.size(show.representations)} representations|">- 2 representations</span>
 		     <em th:if="${#lists.size(show.representations)==0}">aucune representation</em>
 
-	    	    <a th:href="@{/shows/{id}(id=${show.id})}">View</a>
+	    	    <a th:href="@{/shows/{id}(id=${show.id})}">View </a>
+	    	    
+	    	    <button type="button" class="btn btn-outline-primary text-black" onclick="loadDoc()">Bookable</button>
+
+<p id="demo"></p>
+ 
+<script>
+function loadDoc() {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      document.getElementById("demo").innerHTML = this.responseText;
+    }
+  };
+  xhttp.open("POST", "text/ajax_info.txt");
+  xhttp.send();
+}
+</script>
 		</li>
 	        </ul>
 	    </div>
