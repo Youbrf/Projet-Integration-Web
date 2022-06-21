@@ -3,6 +3,7 @@ package be.bxl.icc.reservation;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+
 @SpringBootApplication
 public class ReservationApplication {
 
