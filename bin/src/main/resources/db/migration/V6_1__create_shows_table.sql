@@ -23,4 +23,3 @@ ALTER TABLE `shows`
 --
 ALTER TABLE `shows`
   ADD CONSTRAINT `shows_location_id_a6832141_fk_locations_id` FOREIGN KEY (`location_id`) REFERENCES `locations` (`id`);
-
