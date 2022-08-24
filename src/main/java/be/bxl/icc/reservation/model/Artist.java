@@ -23,6 +23,7 @@ public class Artist {
 	
 	@NotEmpty(message = "The firstname must not be empty.")
 	@Size(min=2, max=60, message = "The firstname must be between 2 and 60 characters long.")
+
     private String firstname;
 	
 	@NotEmpty(message = "The lastname must not be empty.")
@@ -50,6 +51,10 @@ public class Artist {
 
 	public Long getId() {
 		return id;
+	}
+	
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getFirstname() {

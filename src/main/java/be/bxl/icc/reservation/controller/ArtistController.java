@@ -4,6 +4,9 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -52,8 +55,6 @@ public class ArtistController {
 	@GetMapping("/artists/create")
 	public String create(Model model) {
 	    Artist artist = new Artist(null,null);
-		
-		
 	    model.addAttribute("artist", artist);
 		
 	    return "artist/create";
@@ -70,7 +71,7 @@ public class ArtistController {
 	    
 	    return "redirect:/artists/"+artist.getId();
 	}
-	
+
 	@DeleteMapping("/artists/delete/{id}")
 	public String delete(@PathVariable("id") String id, Model model) {
 	    Artist existing = service.getArtist(id);
@@ -120,14 +121,12 @@ public class ArtistController {
 		
 		artist.setId(indice);
 	    	service.updateArtist(id, artist);
+
 	    
 		model.addAttribute("artist", artist);
 	    
 		return "redirect:/artists/"+artist.getId();
 	}
-	
-	
-
 
 }
 

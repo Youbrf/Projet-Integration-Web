@@ -3,7 +3,6 @@ package be.bxl.icc.reservation.model;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -63,6 +62,7 @@ public class User  {
 
 
 	public User() {}
+
 
 	public User(String login, String firstname, String lastname) {
 		this.login = login;
@@ -128,6 +128,7 @@ public class User  {
 		return roles;
 	}
 
+
 	public LocalDateTime getCreated_at() {
 		return created_at;
 	}
@@ -149,6 +150,7 @@ public class User  {
 		
 		return this;
 	}
+
 	public void setCreated_at(LocalDateTime created_at) {
 		this.created_at = created_at;
 	}
@@ -176,11 +178,10 @@ public User addRepresentation(Representation representation) {
 	}
 
 
+
 	@Override
 	public String toString() {
 		return login + "(" + firstname + " " + lastname + ")";
 	}
 
-	
-	
 }

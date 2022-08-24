@@ -39,6 +39,7 @@ public class Representation {
 
 	/**
 	 * Lieu de prestation de la représentation
+
 	 *//*
 		 * @ManyToOne
 		 * 
@@ -51,6 +52,7 @@ public class Representation {
 
 	public Representation() {
 	}
+
 
 	public Representation(Show show, LocalDateTime when, Location location) {
 		this.show = show;
@@ -113,6 +115,28 @@ public class Representation {
 		this.room = room;
 		this.room.addRepresentation(this);
 	}
+	public List<User> getUsers() {
+		return users;
+	}
+
+	public Representation addUser(User user) {
+		if(!this.users.contains(user)) {
+			this.users.add(user);
+			user.addRepresentation(this);
+		}
+		
+		return this;
+	}
+	
+	public Representation removeUser(User user) {
+		if(this.users.contains(user)) {
+			this.users.remove(user);
+			user.getRepresentations().remove(this);
+		}
+		
+		return this;
+	}
+
 
 	@Override
 	public String toString() {
