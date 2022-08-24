@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:layout="http://www.ultraq.net.mx/thymeleaf/layout"
+ layout:decorate="~{layouts/main}">
+<head>
+<title>Création d'un type de professionnel</title>
+<style>
+.fieldError { color: red; }
+</style>
+</head>
+<body>
+	<div class="container">
+	     <div layout:fragment="content">
+	        <h1>Ajout d'un nouveau type d'acteur</h1>
+	        
+	        <form th:action="@{/type/create}" th:object="${type}" method="post">
+		        <div>
+		        
+		        	<label>type:</label>
+		        	<input type="text" th:field="*{type}">
+		<p th:if="${#fields.hasErrors('type')}"
+               			th:errors="*{type}" th:errorclass="fieldError"></p>
+		        </div>
+		        <br>
+		        <br>
+		        <div>
+		        	<button type="submit" th:text="Modifier">Modifier</button>
+		        	<button type="reset" th:text="Réinitialiser">Réinitialiser</button>
+		        	<a th:href="@{/types}">Annuler</a>
+		        </div>
+		    </form>
+		    <br>
+		    
+   	        <nav><a th:href="@{/types}"></a>Retour à l'index</nav>
+	     </div>
+	</div>
+</body>
+</html>

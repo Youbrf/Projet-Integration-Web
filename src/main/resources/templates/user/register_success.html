@@ -1,0 +1,25 @@
+
+<!DOCTYPE html>
+<html lang="fr" xmlns:layout="http://www.ultraq.net.mx/thymeleaf/layout"
+	layout:decorate="~{layouts/main}">
+<head><title>Page d'inscription</title>
+</head>
+<body>
+
+	<div class="Container text-center">
+		<div layout:fragment="content">
+
+			<h1
+				class="rounded border border-dark p-2 m-2 text-center text-black bg-success"
+				th:text="${title}">Registration Succeeded</h1>
+
+			<br>
+			<div>
+				<h3>You have signed up succesfully !</h3>
+				<h4>
+					<a th:href='@{/login}'>Click here to login</a>
+				</h4>
+			</div>
+		</div>
+	</div>
+</body>

@@ -1,0 +1,54 @@
+
+<!DOCTYPE html>
+<html lang="fr" xmlns:layout="http://www.ultraq.net.mx/thymeleaf/layout"
+	layout:decorate="~{layouts/main}">
+<head>
+
+<div layout:fragment="content">
+			<h1
+				class="rounded border border-dark p-2 m-2 text-center text-black bg-light">Nouvelle
+				categorie</h1>
+			<br> <br>
+
+			<form th:action="@{/categories/create}" th:object="${category}"
+				method="post">
+				<div>
+					<!-- <div class="mb-3">
+						<div>
+							<label>Name:</label><br> 
+							<input type="text" th:field="*{name}" class="form-check-input" id="dropdownCheck">
+							<p th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
+								th:errorclass="fieldError"></p>
+						</div>
+					</div> -->
+
+					<label>Nom de la nouvelle categorie</label><br>
+					 <select th:field="*{name}" required minlength="2" maxlength="10">
+					  <option value="default">Select une categorie </option>
+						<option th:each= "categoryName : ${categoryName}" th:value="${categoryName}" 
+							th:text="${categoryName}" />
+					</select>
+					 <br><br>
+					<div>
+						<button type="submit" class="btn btn-outline-primary text-black"
+							th:text="Modifier">Modifier</button>
+						<button type="reset" class="btn btn-outline-primary text-black"
+							th:text="Reinitialiser">Reinitialiser</button>
+						<button type="reset" class="btn btn-outline-primary text-black">
+							<a th:href="@{/categories}"></a>Annuler
+						</button>
+					</div>
+			</form>
+			<br> <br>
+			<div class="actions text-right">
+				<button class="btn btn-outline-primary text-black">
+					
+						<a th:href="@{/categories}">Retour a l'index</a>
+					
+				</button>
+			</div>
+
+		</div>
+	</div>
+</body>
+</html>

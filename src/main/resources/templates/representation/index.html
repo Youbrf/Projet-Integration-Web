@@ -2,25 +2,43 @@
 <html xmlns:layout="http://www.ultraq.net.mx/thymeleaf/layout"
  layout:decorate="~{layouts/main}">
 <head>
-<title>Liste des représentations de spectacle</title>
+<title>Liste des representations de spectacle</title>
 </head>
 <body>
 	<div class="container">
 	     <div layout:fragment="content">
-	        <h1 th:text="${title}">Liste des représentations de spectacle</h1>
+	        <h1 class="rounded border border-dark p-2 m-2 text-center text-black bg-light" th:text="${title}">Liste des representations de spectacle</h1>
+	<br>
+	<table class="table">
 	
-	        <ul th:unless="${#lists.isEmpty(representations)}">
-            	<li th:each="representation : ${representations}">
-		    <span th:text="${representation.show.title}">Ayiti</span>
-	    	    <span th:if="${representation.location}" 
-	    		th:text="' - '+${representation.location.designation}">- Art Center</span>
-		    <span th:text="${#temporals.format(representation.when,'dd-MM-yyyy')}">
+	<thead class="table-success">
+    <tr> <th scope="col">Denomination</th>
+      <th scope="col">Lieu</th>
+      <th scope="col">Date</th>
+       <th scope="col">Action</th>
+      
+    </tr>
+  </thead>
+	  <tbody>
+	
+	        <th:unless="${#lists.isEmpty(representations)}">
+	         <tbody>
+    <tr>
+	        
+            	<tr th:each="representation : ${representations}">
+		    <td><span th:text="${representation.show.title}">Ayiti</span></td>
+	    	    <!-- <td><span th:if="${representation.location}" 
+	    		th:text="' - '+${representation.location.designation}">- Art Center</span></td> -->
+		    <td><span th:text="${#temporals.format(representation.when,'dd-MM-yyyy')}">
 			12-10-2012</span>
 	    	    <span th:text="${#temporals.format(representation.when,'HH:mm')}">
-			13:30</span>
-	    	    <a th:href="@{/representations/{id}(id=${representation.id})}">View</a>
-		</li>
-	        </ul>
+			13:30</span></td>
+	    	   
+				<td><button class="btn btn-outline-primary text-white"><a th:href="@{/representations/{id}(id=${representation.id})}">View</a></button></td>
+				
+		</tr>
+  </tbody>
+</table>
 	    </div>
 	</div>
 </body>

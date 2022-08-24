@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:layout="http://www.ultraq.net.mx/thymeleaf/layout"
+	layout:decorate="~{layouts/main}">
+<head>
+<title>Liste des categories</title>
+</head>
+<body>
+	<div class="container">
+		<div layout:fragment="content">
+			<h1 class="rounded border border-dark p-2 m-2 text-center text-black bg-light" th:text="${title}">LISTE DES ARTISTES</h1>
+			<br>
+
+
+			<table class="table">
+			<th:unless="${#lists.isEmpty(categories)}">
+				<thead class="table-success">
+					<tr>
+						<th scope="col" >Id</th>
+						<th scope="col">name</th>
+						<th scope="col">show</th>
+						<th colspan="3" style class="text-center">Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each ="category: ${categories}">
+						
+
+							<th scope="row" th:text="${category.id}"></th>
+							<td th:text="${category.name}"></td>
+							
+							
+							<td th:unless="${#lists.isEmpty(category.shows)}">
+							<p th:each="show : ${category.shows}" 
+							th:text="${show.title}"></p>
+							<td th:if="${#lists.isEmpty(category.shows)}">Aucun lieu de spectacle.</td>
+							</td>
+							
+							<td><a th:href="@{/categories/{id}(id=${category.id})}">View</a></td>
+							<!-- <td><a th:href="@{/artists/{id}/edit(id=${artist.id})}">Edit</a></td>
+							<td>
+								<form th:id="|deleteForm-${artist.id}|"
+									th:action="@{/artists/delete/{id}(id=${artist.id})}"
+									th:method="delete">
+									<a href="#"
+										th:onclick="|if(confirm('Confirm delete artist #${artist.id}')) 
+	                    		document.getElementById('deleteForm-${artist.id}').submit(); 
+	                    		return false;|">Delete</a>
+								</form>
+							</td> -->
+							
+					</tr>
+				</tbody>
+			</table>
+			 <br>
+		<div class="actions text-right">
+		<button class="btn btn-outline-primary text-black">
+		<nav><a th:href="@{/categories/create}"> Add new category</a>
+	        </nav>
+	       </button></div>
+		</div>
+	</div>
+	<br>
+</body>
+</html>

@@ -33,6 +33,11 @@ public class Show {
 	@Column(name="poster_url")
 	private String posterUrl;
 	
+	  @ManyToOne
+	  @JoinColumn(name="category_id", nullable=true)
+	  private Category category;
+	 
+	
 	/**
 	 * Lieu de création du spectacle
 	 */
@@ -91,25 +96,22 @@ public class Show {
 		return representations;
 	}
 
-	public Show addRepresentation(Representation representation) {
-		if(!this.representations.contains(representation)) {
-			this.representations.add(representation);
-			representation.setShow(this);
-		}
+	/*
+	 * public Show addRepresentation(Representation representation) {
+	 * if(!this.representations.contains(representation)) {
+	 * this.representations.add(representation); representation.setShow(this); }
+	 * 
+	 * return this; }
+	 * 
+	 * public Show removeRepresentation(Representation representation) {
+	 * if(this.representations.contains(representation)) {
+	 * this.representations.remove(representation);
+	 * if(representation.getLocation().equals(this)) {
+	 * representation.setLocation(null); } }
+	 
 		
 		return this;
-	}
-	
-	public Show removeRepresentation(Representation representation) {
-		if(this.representations.contains(representation)) {
-			this.representations.remove(representation);
-			if(representation.getLocation().equals(this)) {
-				representation.setLocation(null);
-			}
-		}
-		
-		return this;
-	}
+	}*/
 
 	public Show() { }
 	
@@ -215,6 +217,18 @@ public class Show {
 			+ ", createdAt=" + createdAt + ", updatedAt=" + updatedAt 
 			+ ", representations=" + representations.size() + "]";
 	}
+
+	public Category getCategory() {
+		return category;
+	}
+
+	public void setCategory(Category category) {
+		this.category.removeShow(this);
+		this.category = category;
+		this.category.addShow(this);
+	}
+
+	
 
 	
 }

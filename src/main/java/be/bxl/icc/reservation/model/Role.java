@@ -4,7 +4,9 @@ package be.bxl.icc.reservation.model;
 import java.util.ArrayList;
 import java.util.List;
 
+
 import javax.persistence.Entity;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -14,14 +16,16 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 
+
+
 @Entity
 @Table(name="roles")
-public class Role {
+public class Role  {
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	private String role;
-	
+
 	@ManyToMany
 	@JoinTable(
 		  name = "user_role", 
@@ -48,6 +52,7 @@ public class Role {
 	public void setRole(String role) {
 		this.role = role;
 	}
+
 	public List<User> getUsers() {
 		return users;
 	}
@@ -71,10 +76,15 @@ public class Role {
 	}
 
 
+
 	@Override
 	public String toString() {
 		return "Role [id=" + id + ", role=" + role + "]";
 	}
+
+	
+	
+	
 	
 }
 

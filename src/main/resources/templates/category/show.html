@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.mx/thymeleaf/layout"
+	layout:decorate="~{layouts/main}">
+<head>
+<title>Fiche d'une categorie de show</title>
+</head>
+<body>
+<body>
+	<div class="container">
+		<div layout:fragment="content">
+			<h1 class="rounded border border-dark p-2 m-2 text-center text-black bg-light" th:text="${#strings.capitalize(category.name)}"></h1>
+			<br>
+			<h2 class = "text-center">Liste des spectacles</h2>
+			<br>
+			<ul th:unless="${#lists.isEmpty(category.shows)}">
+				<li th:each="show : ${category.shows}" th:text="${show.title}">
+				</li>
+			</ul>
+<br>
+         <p th:if="${#lists.isEmpty(category.shows)}">Aucun lieu de spectacle.</p>
+        
+			<nav>
+				<button class="btn btn-outline-primary text-white"><a th:href="@{/categories}"> Retour a l'index</a></button>
+			</nav>
+		</div>
+	</div>
+</body>
+
+
+</html>
+
+
+
+
+
+

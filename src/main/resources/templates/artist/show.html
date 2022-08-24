@@ -1,31 +1,54 @@
 <!DOCTYPE html>
+
+
 <html lang="fr" xmlns:layout="http://www.ultraq.net.mx/thymeleaf/layout"
- layout:decorate="~{layouts/main}">
+	layout:decorate="~{layouts/main}">
 <head>
-<title>Liste des artistes</title>
+<title>Fiche d'un artiste</title>
 </head>
 <body>
 	<div class="container">
-	     <div layout:fragment="content">
-	        <h1 th:text="${artist.firstname} +' '+ ${artist.lastname}">Bob Sull</h1>
-	        
-	        <h2>Liste des types</h2>
-	        <ul th:unless="${#lists.isEmpty(artist.types)}">
-	        	<li th:each="type : ${artist.types}" th:text="${type.type}">Type</li>
-   	        </ul>
+
+		<div layout:fragment="content">
+			<h1
+				class="rounded border border-dark p-2 m-2 text-center text-black bg-light"
+				th:text="|${artist.firstname}  ${artist.lastname}|">Bob Sull</h1><br>
+
+			<table class="table">
+				<th:unless="${#lists.isEmpty(artist.types)}">
+					<thead class="table-success">
+						<tr>
+							<th scope= "col">Liste des types</th>
+							<th colspan="2">Actions</th>
+
+
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="type : ${artist.types}">
+							<th scope="row" th:text="${type.type}">Type</th>
+					
 			<div class="actions">
-				<a th:href="@{/artists/{id}/edit(id=${artist.id})}">Edit</a>
-	        </div>
-			<form th:id="|deleteForm-${artist.id}|" 
-	   				th:action="@{/artists/{id}(id=${artist.id})}" th:method="delete">
-             	    <a href="#" th:onclick="|if(confirm('Confirm delete artist #${artist.id}')) 
-             		document.getElementById('deleteForm-${artist.id}').submit(); 
-             		return false;|">Delete</a>
-             	</form>
+				<div><td><button class="btn btn-outline-primary text-white "><a th:href="@{/artists/{id}/edit(id=${artist.id})}">Edit</a></button></div>
+				<form th:id="|deleteForm-${artist.id}|"
+					th:action="@{/artists/{id}(id=${artist.id})}" th:method="delete">
+					<button class="btn btn-outline-primary text-black"><a href="#"
+						th:onclick="|if(confirm('Confirm delete artist #${artist.id}')) 
+                 		document.getElementById('deleteForm-${artist.id}').submit(); 
+                 		return false;|">Delete</a></button></td>
+				</form>
+			</div>
+			</tbody>
+			</table>
 
-
-	        <nav><a th:href="@{/artists}">Retour à l'index</a></nav>
-	     </div>
+<div class="actions  text-right">
+			<nav>
+				<button class="btn btn-outline-success text-black"><a th:href="@{/artists}">Retour a l'index</a></button>
+			</nav>
+			</div>
+		</div>
 	</div>
 </body>
-</html>	
+</html>
+
+

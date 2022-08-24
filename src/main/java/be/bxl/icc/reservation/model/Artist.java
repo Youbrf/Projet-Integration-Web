@@ -9,8 +9,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
+import javax.validation.constraints.NotEmpty;
+
 
 
 @Entity
@@ -22,12 +23,22 @@ public class Artist {
 	
 	@NotEmpty(message = "The firstname must not be empty.")
 	@Size(min=2, max=60, message = "The firstname must be between 2 and 60 characters long.")
-	private String firstname;
+
+    private String firstname;
 	
 	@NotEmpty(message = "The lastname must not be empty.")
 	@Size(min=2, max=60, message = "The firstname must be between 2 and 60 characters long.")
+
 	private String lastname;
 	
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public void setTypes(List<Type> types) {
+		this.types = types;
+	}
+
 	@ManyToMany(mappedBy = "artists")
 	private List<Type> types = new ArrayList<>();
 

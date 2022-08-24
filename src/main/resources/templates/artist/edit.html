@@ -10,12 +10,16 @@
 <body>
 	<div class="container">
 	     <div layout:fragment="content">
-	        <h1 th:text="|${artist.firstname}  ${artist.lastname}|">Bob Sull</h1>
-	        
+
+	        <h1 class="rounded border border-dark p-2 m-2 text-center text-black bg-light" th:text="|${artist.firstname}  ${artist.lastname}|">Bob Sull</h1>
+	        <br>
 	        <form th:action="@{/artists/{id}/edit(id=${artist.id})}" th:object="${artist}" th:method="put">
-		    <div>
+		    <div></b>
 		    	<label>Id:</label> 
-		    	<span th:text="${artist.id}">1</span>
+		       	<input type="text" th:field="*{id}">
+		<p th:if="${#fields.hasErrors('id')}"
+               			th:errors="*{id}" th:errorclass="fieldError"></p>
+
 		    </div>
 		    <div>
 		      	<label>Firstname:</label>
@@ -30,14 +34,18 @@
                			th:errors="*{lastname}" th:errorclass="fieldError"></p>
 		    </div>
 		    <div>
-		       	<button type="submit" th:text="Modifier">Modifier</button>
-		        	<button type="reset" th:text="Réinitialiser">Réinitialiser</button>
-		        	<a th:href="${back}">Annuler</a>
+
+		    <br>
+		       	<button class="btn btn-outline-primary text-black" type="submit" th:text="Modifier">Modifier</button>
+		        	<button class="btn btn-outline-primary text-black" type="reset" th:text="Reinitialiser">Reinitialiser</button>
+		        	<button class="btn btn-outline-primary text-black"><a th:href="${back}">Annuler</a></button>
 		    </div>
 		</form>
-		    
-   	        <nav><a th:href="@{/artists}">Retour à l'index</a></nav>
+		    <br>
+		    <div class="actions text-right">
+   	        <button class="btn btn-outline-success text-success "><nav><a th:href="@{/artists}">Retour a l'index</a></nav></button>
+   	        </div>
 	     </div>
 	</div>
 </body>
-</html>
+

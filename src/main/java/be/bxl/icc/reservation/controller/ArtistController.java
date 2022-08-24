@@ -1,6 +1,8 @@
 package be.bxl.icc.reservation.controller;
 
 import java.util.List;
+import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -20,11 +22,16 @@ import be.bxl.icc.reservation.model.Artist;
 import be.bxl.icc.reservation.model.ArtistService;
 
 
+
 @Controller
 public class ArtistController {
+	
+	
 	@Autowired
 	ArtistService service;
 
+	
+	
 	@GetMapping("/artists")
 	public String index(Model model) {
 	    List<Artist> artists = service.getAllArtists();
@@ -48,7 +55,6 @@ public class ArtistController {
 	@GetMapping("/artists/create")
 	public String create(Model model) {
 	    Artist artist = new Artist(null,null);
-
 	    model.addAttribute("artist", artist);
 		
 	    return "artist/create";
@@ -66,6 +72,19 @@ public class ArtistController {
 	    return "redirect:/artists/"+artist.getId();
 	}
 
+	@DeleteMapping("/artists/delete/{id}")
+	public String delete(@PathVariable("id") String id, Model model) {
+	    Artist existing = service.getArtist(id);
+		
+	    if(existing!=null) {
+		Long indice = (long) Integer.parseInt(id);
+		
+	    	service.deleteArtist(indice);
+	    }
+	    	    
+	    return "redirect:/artists";
+	}
+	
 	@GetMapping("/artists/{id}/edit")
 	public String edit(Model model, @PathVariable("id") String id, HttpServletRequest request) {
 		Artist artist = service.getArtist(id);
@@ -101,25 +120,17 @@ public class ArtistController {
 		Long indice = (long) Integer.parseInt(id);
 		
 		artist.setId(indice);
-	    service.updateArtist(artist.getId(), artist);
+	    	service.updateArtist(id, artist);
+
 	    
 		model.addAttribute("artist", artist);
 	    
 		return "redirect:/artists/"+artist.getId();
 	}
 
-	@DeleteMapping("/artists/{id}")
-	public String delete(@PathVariable("id") String id, Model model) {
-	    Artist existing = service.getArtist(id);
-		
-	    if(existing!=null) {
-		Long indice = (long) Integer.parseInt(id);
-		
-	    	service.deleteArtist(indice);
-	    }
-	    	    
-	    return "redirect:/artists";
-	}
-
-
 }
+
+
+
+
+
