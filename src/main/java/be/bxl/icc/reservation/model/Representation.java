@@ -25,9 +25,7 @@ public class Representation {
 	@JoinColumn(name = "show_id", nullable = false)
 	private Show show;
 	
-	@ManyToOne
-	@JoinColumn(name = "room_id", nullable = false)
-	private Rooms room;
+
 	
 	
 	
@@ -86,35 +84,7 @@ public class Representation {
 		return id;
 	}
 
-	public List<User> getUsers() {
-		return users;
-	}
 
-	public Representation addUser(User user) {
-		if (!this.users.contains(user)) {
-			this.users.add(user);
-			user.addRepresentation(this);
-		}
-
-		return this;
-	}
-
-	public Representation removeUser(User user) {
-		if (this.users.contains(user)) {
-			this.users.remove(user);
-			user.getRepresentations().remove(this);
-		}
-
-		return this;
-	}
-	
-	
-
-	public void setRoom(Rooms room) {
-		this.room.removeShow(this);
-		this.room = room;
-		this.room.addRepresentation(this);
-	}
 	public List<User> getUsers() {
 		return users;
 	}

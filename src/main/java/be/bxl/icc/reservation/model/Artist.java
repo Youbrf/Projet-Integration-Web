@@ -31,9 +31,7 @@ public class Artist {
 
 	private String lastname;
 	
-	public void setId(Long id) {
-		this.id = id;
-	}
+
 
 	public void setTypes(List<Type> types) {
 		this.types = types;

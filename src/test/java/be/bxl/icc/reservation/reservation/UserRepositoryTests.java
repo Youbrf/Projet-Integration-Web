@@ -1,3 +1,4 @@
+/**
 package be.bxl.icc.reservation.reservation;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -66,3 +67,4 @@ public void testFindUserByEmail() {
 
 
 }
+*/

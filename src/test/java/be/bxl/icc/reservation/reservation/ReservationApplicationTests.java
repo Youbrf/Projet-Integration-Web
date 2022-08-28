@@ -1,4 +1,6 @@
-package be.bxl.icc.reservation.reservation;
+/**
+
+ package be.bxl.icc.reservation.reservation;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,7 +44,7 @@ class ReservationApplicationTests {
 	  
 		  
 	  }
-	
+	*/
 	
 	
 	

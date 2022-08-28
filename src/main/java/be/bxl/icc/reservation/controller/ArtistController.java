@@ -120,7 +120,7 @@ public class ArtistController {
 		Long indice = (long) Integer.parseInt(id);
 		
 		artist.setId(indice);
-	    	service.updateArtist(id, artist);
+	    	service.updateArtist(indice, artist);
 
 	    
 		model.addAttribute("artist", artist);
