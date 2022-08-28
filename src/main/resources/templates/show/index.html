@@ -7,21 +7,55 @@
 <body>
 	<div class="container">
 	     <div layout:fragment="content">
-	        <h1 th:text="${title}">Liste des spectacles</h1>
-	
-	        <ul th:unless="${#lists.isEmpty(shows)}">
-            	<li th:each="show : ${shows}">
-		    <span th:text="${show.title}">Ayiti</span>
-	    	    <span th:if="${show.bookable}" th:text="${show.price} + ' €'">9.99 €</span>
-	    	    <span th:if="${#lists.size(show.representations)==1}">- 1 representation</span>
-		    <span th:if="${#lists.size(show.representations)>1}" 
-			th:text="|- ${#lists.size(show.representations)} representations|">- 2 representations</span>
-		     <em th:if="${#lists.size(show.representations)==0}">aucune representation</em>
+	        <h1 class="rounded border border-dark p-2 m-2 text-center text-black bg-light" th:text="${title}">Liste des spectacles</h1>
+			<table class="table">
+				<th:unless="${#lists.isEmpty(listShows)}">
+				<thead class="table-success">
+					<tr>
+						<th scope="col" >Titre</th>
+						<th scope="col">prix</th>
+						<th scope="col">représentation</th>
+						<th colspan="2" style class="text-center">Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each ="show : ${listShows}">
+						<th th:text="${show.title}"></th>
+						<td th:if="${show.bookable}" th:text="${show.price} + ' €'"></td>
+						<td><span th:if="${#lists.size(show.representations)==1}">1 representation</span>
+							<span th:if="${#lists.size(show.representations)>1}"
+							  th:text="|- ${#lists.size(show.representations)} representations|">2 representations</span>
+							<em th:if="${#lists.size(show.representations)==0}">aucune representation</em>
+						</td>
+						<td><a th:href="@{/shows/{id}(id=${show.id})}">View </a></td>
+						<td><button type="button" class="btn btn-outline-primary text-black" onclick="loadDoc()">Bookable</button></td>
+					</tr>
+				</tbody>
+				</th:unless>
+			</table>
 
-	    	    <a th:href="@{/shows/{id}(id=${show.id})}">View </a>
-	    	    
-	    	    <button type="button" class="btn btn-outline-primary text-black" onclick="loadDoc()">Bookable</button>
+			 <div th:if="${totalPages>1}">
+				 <div class="row col-sm-10">
+					 <div class="col-sm-2">
+						 Total rows:[[${totalItems}]]
+					 </div>
+					 <div class="col-sm-1">
+						 <span th:each="i:${#numbers.sequence(1,totalPages)}">
+							 <a th:if="${currentPage != i}" th:href="@{'/shows/page/'+ ${i}}">[[${i}]]</a>
+							 <span th:unless="${currentPage != i}">[[${i}]]</span> &nbsp;&nbsp;
+						 </span>
+					 </div>
+					 <div class="col-sm-1">
+						 <a th:if="${currentPage < totalPages}" th:href="@{'/shows/page/'+ ${currentPage + 1}}">Next</a>
+						 <span th:unless="${currentPage < totalPages}">Next</span>
+					 </div>
+					 <div class="col-sm-1">
+						 <a th:if="${currentPage < totalPages}" th:href="@{'/shows/page/'+ ${totalPages}}">Last</a>
+						 <span th:unless="${currentPage < totalPages}">Last</span>
+					 </div>
+				 </div>
 
+			 </div>
 <p id="demo"></p>
  
 <script>
