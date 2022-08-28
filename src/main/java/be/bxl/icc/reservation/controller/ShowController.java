@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.TreeMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,14 +26,23 @@ public class ShowController {
 
 	@GetMapping("/shows")
     	public String index(Model model) {
-		List<Show> shows = service.getAll();
-
-		model.addAttribute("shows", shows);
-		model.addAttribute("title", "Liste des spectacles");
-		
-        	return "show/index";
+			return findPage(1,model);
     	}
-	
+	@GetMapping("/shows/page/{pageNo}")
+	public String findPage(@PathVariable (value = "pageNo") int pageNo,Model model){
+		int pageSize = 2;
+
+		Page<Show> page = service.findPagination(pageNo,pageSize);
+		List<Show> listShows = page.getContent();
+
+		model.addAttribute("currentPage", pageNo);
+		model.addAttribute("totalPages", page.getTotalPages());
+		model.addAttribute("TotalItems", page.getTotalElements());
+		model.addAttribute("listShows", listShows);
+
+		return "show/index";
+	}
+
 	@GetMapping("/shows/{id}")
   	 public String show(Model model, @PathVariable("id") String id) {
 		Show show = service.get(id);

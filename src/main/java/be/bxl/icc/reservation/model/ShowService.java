@@ -5,19 +5,20 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
 public class ShowService {
 	@Autowired
 	private ShowRepository repository;
-	
-	
+
+
 	public List<Show> getAll() {
 		List<Show> shows = new ArrayList<>();
-		
 		repository.findAll().forEach(shows::add);
-		
 		return shows;
 	}
 	
@@ -41,7 +42,10 @@ public class ShowService {
 		
 		repository.deleteById(indice);
 	}
-
+	public Page<Show> findPagination(int pageNo,int pageSize){
+		Pageable pageable = PageRequest.of(pageNo-1,pageSize);
+		return this.repository.findAll(pageable);
+	}
 	public List<Show> getFromLocation(Location location) {
 		return repository.findByLocation(location);
 	}
