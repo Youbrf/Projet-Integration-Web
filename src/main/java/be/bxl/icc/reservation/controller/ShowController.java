@@ -16,7 +16,7 @@ import be.bxl.icc.reservation.model.ArtistType;
 import be.bxl.icc.reservation.model.Show;
 import be.bxl.icc.reservation.model.ShowService;
 import be.bxl.icc.reservation.model.Type;
-
+import org.springframework.web.bind.annotation.RequestParam;
 
 
 @Controller
@@ -26,18 +26,24 @@ public class ShowController {
 
 	@GetMapping("/shows")
     	public String index(Model model) {
-			return findPage(1,model);
+			return findPage(1,"title","asc",model);
     	}
 	@GetMapping("/shows/page/{pageNo}")
-	public String findPage(@PathVariable (value = "pageNo") int pageNo,Model model){
+	public String findPage(@PathVariable (value = "pageNo") int pageNo,
+						   @RequestParam("sortField") String sortField,
+						   @RequestParam("sortDir") String sortDir,
+						   Model model){
 		int pageSize = 2;
 
-		Page<Show> page = service.findPagination(pageNo,pageSize);
+		Page<Show> page = service.findPagination(pageNo,pageSize,sortField,sortDir);
 		List<Show> listShows = page.getContent();
 
 		model.addAttribute("currentPage", pageNo);
 		model.addAttribute("totalPages", page.getTotalPages());
-		model.addAttribute("TotalItems", page.getTotalElements());
+		model.addAttribute("totalItems", page.getTotalElements());
+		model.addAttribute("sortField", sortField);
+		model.addAttribute("sortDir", sortDir);
+		model.addAttribute("reserveSortDir", sortDir.equals("asc") ? "desc" : "asc");
 		model.addAttribute("listShows", listShows);
 
 		return "show/index";
