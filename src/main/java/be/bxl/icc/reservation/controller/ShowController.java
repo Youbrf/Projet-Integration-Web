@@ -7,6 +7,7 @@ import java.util.TreeMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +17,7 @@ import be.bxl.icc.reservation.model.ArtistType;
 import be.bxl.icc.reservation.model.Show;
 import be.bxl.icc.reservation.model.ShowService;
 import be.bxl.icc.reservation.model.Type;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
@@ -28,6 +30,16 @@ public class ShowController {
     	public String index(Model model) {
 			return findPage(1,"title","asc",model);
     	}
+
+	@RequestMapping("/shows/search")
+	public String searchShowByTitle(Model model, @Param("keyword") String keyword) {
+		List<Show> listShows = service.listAll(keyword);
+		model.addAttribute("listShows", listShows);
+		model.addAttribute("keyword", keyword);
+
+		return "show/index";
+	}
+
 	@GetMapping("/shows/page/{pageNo}")
 	public String findPage(@PathVariable (value = "pageNo") int pageNo,
 						   @RequestParam("sortField") String sortField,

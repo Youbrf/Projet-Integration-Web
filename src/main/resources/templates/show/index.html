@@ -24,7 +24,7 @@
 						<td th:if="${show.bookable}" th:text="${show.price} + ' €'"></td>
 						<td><span th:if="${#lists.size(show.representations)==1}">1 representation</span>
 							<span th:if="${#lists.size(show.representations)>1}"
-							  th:text="|- ${#lists.size(show.representations)} representations|">2 representations</span>
+							  th:text="| ${#lists.size(show.representations)} representations|">2 representations</span>
 							<em th:if="${#lists.size(show.representations)==0}">aucune representation</em>
 						</td>
 						<td><a th:href="@{/shows/{id}(id=${show.id})}">View </a></td>
@@ -70,6 +70,7 @@ function loadDoc() {
   xhttp.send();
 }
 </script>
+
 		</li>
 	        </ul>
 	    </div>

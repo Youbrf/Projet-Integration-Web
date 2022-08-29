@@ -22,6 +22,13 @@ public class ShowService {
 		repository.findAll().forEach(shows::add);
 		return shows;
 	}
+
+	public List<Show> listAll(String keyword) {
+		if (keyword != null) {
+			return repository.search(keyword);
+		}
+		return repository.findAll();
+	}
 	
 	public Show get(String id) {
 		Long indice = (long) Integer.parseInt(id);
