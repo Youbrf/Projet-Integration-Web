@@ -12,6 +12,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 @Table(name="localities")
@@ -39,6 +41,7 @@ public class Locality {
 	private String locality;
 	
 	@OneToMany( targetEntity=Location.class, mappedBy="locality" )
+	@JsonIgnore
 	private List<Location> locations = new ArrayList<>();
 	
 	protected Locality() { }

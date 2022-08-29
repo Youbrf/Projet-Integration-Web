@@ -14,6 +14,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "representations")
 public class Representation {
@@ -22,6 +24,7 @@ public class Representation {
 	private Long id;
 
 	@ManyToOne
+	@JsonIgnore
 	@JoinColumn(name = "show_id", nullable = false)
 	private Show show;
 	
@@ -45,6 +48,7 @@ public class Representation {
 		 */
 
 	@ManyToMany
+	@JsonIgnore
 	@JoinTable(name = "reservations", joinColumns = @JoinColumn(name = "representation_id"), inverseJoinColumns = @JoinColumn(name = "user_id"))
 	private List<User> users = new ArrayList<>();
 

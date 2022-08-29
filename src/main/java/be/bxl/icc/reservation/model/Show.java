@@ -15,6 +15,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Column;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.github.slugify.Slugify;
 
 @Entity
@@ -33,7 +34,9 @@ public class Show {
 	@Column(name="poster_url")
 	private String posterUrl;
 	
+	  
 	  @ManyToOne
+	  @JsonIgnore
 	  @JoinColumn(name="category_id", nullable=true)
 	  private Category category;
 	 
@@ -42,6 +45,7 @@ public class Show {
 	 * Lieu de création du spectacle
 	 */
 	@ManyToOne
+	@JsonIgnore
 	@JoinColumn(name="location_id", nullable=true)
 	private Location location;
 	
