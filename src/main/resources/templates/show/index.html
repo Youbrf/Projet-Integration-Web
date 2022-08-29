@@ -7,14 +7,14 @@
 <body>
 	<div class="container">
 	     <div layout:fragment="content">
-	        <h1 class="rounded border border-dark p-2 m-2 text-center text-black bg-light" th:text="${title}">Liste des spectacles</h1>
+	        <h1 class="rounded border border-dark p-2 m-2 text-center text-black bg-light" >LISTE DES SPECTACLES</h1>
 			<table class="table">
 				<th:unless="${#lists.isEmpty(listShows)}">
 				<thead class="table-success">
 					<tr>
-						<th scope="col" >Titre</th>
-						<th scope="col">prix</th>
-						<th scope="col">représentation</th>
+						<th scope="col" ><a th:href="@{'/shows/page/'+ ${currentPage} + '?sortField=title&sortDir=' + ${reserveSortDir}}">Titre</a></th>
+						<th scope="col">Prix</th>
+						<th scope="col">Représentation</th>
 						<th colspan="2" style class="text-center">Actions</th>
 					</tr>
 				</thead>
@@ -37,20 +37,20 @@
 			 <div th:if="${totalPages>1}">
 				 <div class="row col-sm-10">
 					 <div class="col-sm-2">
-						 Total rows:[[${totalItems}]]
+						 Total : [[${totalItems}]]
 					 </div>
 					 <div class="col-sm-1">
 						 <span th:each="i:${#numbers.sequence(1,totalPages)}">
-							 <a th:if="${currentPage != i}" th:href="@{'/shows/page/'+ ${i}}">[[${i}]]</a>
+							 <a th:if="${currentPage != i}" th:href="@{'/shows/page/'+ ${i} + '?sortField='+ ${sortField} +'&sortDir=' + ${sortDir}}">[[${i}]]</a>
 							 <span th:unless="${currentPage != i}">[[${i}]]</span> &nbsp;&nbsp;
 						 </span>
 					 </div>
 					 <div class="col-sm-1">
-						 <a th:if="${currentPage < totalPages}" th:href="@{'/shows/page/'+ ${currentPage + 1}}">Next</a>
+						 <a th:if="${currentPage < totalPages}" th:href="@{'/shows/page/'+ ${currentPage + 1} + '?sortField='+ ${sortField} +'&sortDir=' + ${sortDir}}">Next</a>
 						 <span th:unless="${currentPage < totalPages}">Next</span>
 					 </div>
 					 <div class="col-sm-1">
-						 <a th:if="${currentPage < totalPages}" th:href="@{'/shows/page/'+ ${totalPages}}">Last</a>
+						 <a th:if="${currentPage < totalPages}" th:href="@{'/shows/page/'+ ${totalPages} + '?sortField='+ ${sortField} +'&sortDir=' + ${sortDir}}">Last</a>
 						 <span th:unless="${currentPage < totalPages}">Last</span>
 					 </div>
 				 </div>
