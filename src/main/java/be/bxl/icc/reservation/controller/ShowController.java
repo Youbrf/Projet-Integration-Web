@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
+import be.bxl.icc.reservation.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.repository.query.Param;
@@ -13,10 +14,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import be.bxl.icc.reservation.model.ArtistType;
-import be.bxl.icc.reservation.model.Show;
-import be.bxl.icc.reservation.model.ShowService;
-import be.bxl.icc.reservation.model.Type;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -25,6 +22,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class ShowController {
 	@Autowired
 	ShowService service;
+	@Autowired
+	CategoryService categoryService;
 
 	@GetMapping("/shows")
     	public String index(Model model) {
@@ -34,6 +33,8 @@ public class ShowController {
 	@RequestMapping("/shows/search")
 	public String searchShowByTitle(Model model, @Param("keyword") String keyword) {
 		List<Show> listShows = service.listAll(keyword);
+		List<Category> listCategory = categoryService.getAllCategory();
+		model.addAttribute("listCategory", listCategory);
 		model.addAttribute("listShows", listShows);
 		model.addAttribute("keyword", keyword);
 
@@ -49,6 +50,7 @@ public class ShowController {
 
 		Page<Show> page = service.findPagination(pageNo,pageSize,sortField,sortDir);
 		List<Show> listShows = page.getContent();
+		List<Category> listCategory = categoryService.getAllCategory();
 
 		model.addAttribute("currentPage", pageNo);
 		model.addAttribute("totalPages", page.getTotalPages());
@@ -56,6 +58,17 @@ public class ShowController {
 		model.addAttribute("sortField", sortField);
 		model.addAttribute("sortDir", sortDir);
 		model.addAttribute("reserveSortDir", sortDir.equals("asc") ? "desc" : "asc");
+		model.addAttribute("listShows", listShows);
+		model.addAttribute("listCategory", listCategory);
+
+		return "show/index";
+	}
+
+	@GetMapping("/shows/category/{idCategory}")
+	public String showByCategory(@PathVariable("idCategory") String idCategory, Model model){
+		List<Show> listShows = service.showByCategory(idCategory);
+		List<Category> listCategory = categoryService.getAllCategory();
+		model.addAttribute("listCategory", listCategory);
 		model.addAttribute("listShows", listShows);
 
 		return "show/index";

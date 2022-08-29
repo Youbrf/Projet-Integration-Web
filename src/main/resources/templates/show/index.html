@@ -7,8 +7,15 @@
 <body>
 	<div class="container">
 	     <div layout:fragment="content">
-	        <h1 class="rounded border border-dark p-2 m-2 text-center text-black bg-light" >LISTE DES SPECTACLES</h1>
-			<table class="table">
+			 <div class="dropdown">
+				 <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					 Category
+				 </a>
+				 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+					 <a th:each ="category : ${listCategory}" class="dropdown-item" th:href="@{'/shows/category/'+ ${category.id}}" th:text="${category.name}"></a>
+				 </div>
+			 </div>
+			 <table class="table">
 				<th:unless="${#lists.isEmpty(listShows)}">
 				<thead class="table-success">
 					<tr>
