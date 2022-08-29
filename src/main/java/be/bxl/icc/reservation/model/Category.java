@@ -11,6 +11,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -30,7 +32,9 @@ public class Category {
 	@NotEmpty(message = "the category's name must not be empty")
 		private String name;
 
+	
 	@OneToMany(targetEntity = Show.class, mappedBy = "category")
+	@JsonIgnore
 	private List<Show> shows = new ArrayList<>();
 
 	public Category(String name) {

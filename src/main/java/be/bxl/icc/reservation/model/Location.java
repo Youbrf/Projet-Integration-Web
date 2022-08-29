@@ -13,6 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.github.slugify.Slugify;
 
 @Entity
@@ -29,13 +30,16 @@ public class Location {
 	private String address;
 	
 	@ManyToOne
+	@JsonIgnore
 	@JoinColumn(name="locality_id", nullable=false)
 	private Locality locality;
 	
 	private String website;
 	private String phone;
 	
+	
 	@OneToMany(targetEntity=Show.class, mappedBy="location")
+	@JsonIgnore
 	private List<Show> shows = new ArrayList<>();
 	
 

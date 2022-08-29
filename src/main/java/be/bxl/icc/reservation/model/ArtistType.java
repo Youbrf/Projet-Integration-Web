@@ -15,6 +15,8 @@ import javax.persistence.ManyToOne;
 
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 
 @Entity
@@ -24,14 +26,17 @@ public class ArtistType {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
 
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="artist_id", nullable=false)
 	private Artist artist;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="type_id", nullable=false)
 	private Type type;
 	
+	@JsonIgnore
 	@ManyToMany(targetEntity=Show.class)
 	@JoinTable(
 		name = "artist_type_show", 

@@ -58,6 +58,7 @@ public class Type {
 	public void setType(String type) {
 		this.type = type;
 	}
+	@JsonIgnore
 	public List<Artist> getArtists() {
 		return artists;
 	}
